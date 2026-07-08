@@ -5,28 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terry Thompson | West Herr Chevrolet of Williamsville | Buffalo's Trusted Car Guy</title>
 <meta name="description" content="Terry Thompson at West Herr Chevrolet of Williamsville. Chevrolet Certified, Mark of Excellence Award winner. Buffalo's most trusted car consultant. No pressure. First Principles approach.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    /* Brand system — Graphite / Charcoal Blue / Slate Gray / Fog Gray / Off-White / Cobalt Blue */
-    --primary: #0057B8;       /* Cobalt Blue — sole accent: links, CTAs, highlights */
-    --primary-hover: #004A9C; /* Cobalt Blue, darkened ~15% for hover/active states */
-    --primary-pale: #D6DBDF;  /* Fog Gray — light tint behind accent badges */
-    --dark: #3B5166;          /* Charcoal Blue — dark section backgrounds */
-    --dark-2: #2C3E50;        /* Graphite — secondary dark surface / headings */
-    --light: #FAFAFA;         /* Off-White — page/section background */
-    --white: #FFFFFF;         /* Card backgrounds, reversed text */
-    --text: #2C3E50;          /* Graphite — headings & primary text */
-    --muted: #6E7C87;         /* Slate Gray — body/secondary text, captions */
-    --border: #D6DBDF;        /* Fog Gray — borders, dividers, rules */
+    --gold: #8661C5;
+    --gold-light: #463668;
+    --gold-pale: #C5B4E3;
+    --dark: #06161F;
+    --dark-2: #091F2C;
+    --dark-3: #0078D4;
+    --mid: #C03BC4;
+    --light: #F4F3F5;
+    --white: #FFFFFF;
+    --text: #1A1A1A;
+    --muted: #6B6B6B;
+    --border: #E8E3DB;
     --radius: 4px;
     --radius-lg: 10px;
   }
 
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'Calibri', 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-family: 'DM Sans', sans-serif;
     background: var(--white);
     color: var(--text);
     font-size: 16px;
@@ -56,7 +59,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .sticky-bar .brand span { color: var(--white); }
+  .sticky-bar .brand span { color: var(--gold); }
   .sticky-ctas { display: flex; gap: 8px; flex-shrink: 0; }
   .btn-call, .btn-text {
     display: inline-flex;
@@ -71,7 +74,7 @@
     transition: opacity 0.15s;
     cursor: pointer;
   }
-  .btn-call { background: var(--primary); color: var(--white); }
+  .btn-call { background: var(--gold); color: var(--dark); }
   .btn-text { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.35); }
   .btn-call:hover, .btn-text:hover { opacity: 0.85; }
   .icon { width: 14px; height: 14px; flex-shrink: 0; }
@@ -100,7 +103,7 @@
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--gold);
     margin-bottom: 20px;
   }
   .hero-eyebrow::before {
@@ -108,10 +111,10 @@
     display: block;
     width: 24px;
     height: 2px;
-    background: var(--primary);
+    background: var(--gold);
   }
   h1 {
-    font-family: 'Cambria', Georgia, 'Times New Roman', serif;
+    font-family: 'Playfair Display', serif;
     font-size: clamp(38px, 5vw, 58px);
     font-weight: 900;
     line-height: 1.1;
@@ -119,8 +122,8 @@
     margin-bottom: 20px;
   }
   h1 em {
-    font-style: italic;
-    color: var(--white);
+    font-style: normal;
+    color: var(--gold);
   }
   .hero-sub {
     font-size: 17px;
@@ -135,8 +138,8 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--primary);
-    color: var(--white);
+    background: var(--gold);
+    color: var(--dark);
     text-decoration: none;
     padding: 14px 28px;
     border-radius: var(--radius);
@@ -145,7 +148,7 @@
     letter-spacing: 0.01em;
     transition: background 0.15s;
   }
-  .cta-primary:hover { background: var(--primary-hover); }
+  .cta-primary:hover { background: var(--gold-light); }
   .cta-secondary {
     display: inline-flex;
     align-items: center;
@@ -173,9 +176,9 @@
     width: 100%;
     max-width: 380px;
     aspect-ratio: 3/4;
-    background: var(--primary);
+    background: var(--dark-3);
     border-radius: var(--radius-lg);
-    border: 1px solid rgba(0,87,184,0.3);
+    border: 1px solid rgba(201,153,58,0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -195,8 +198,8 @@
     padding: 24px;
   }
   .hero-badge {
-    background: var(--primary);
-    color: var(--white);
+    background: var(--gold);
+    color: var(--dark);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -208,8 +211,8 @@
 
   /* ─── TRUST BAR ─── */
   .trust-bar {
-    background: var(--primary-pale);
-    border-top: 2px solid var(--primary);
+    background: var(--gold-pale);
+    border-top: 2px solid var(--gold);
     border-bottom: 1px solid var(--border);
     padding: 20px 24px;
   }
@@ -234,14 +237,14 @@
   .trust-icon {
     width: 32px;
     height: 32px;
-    background: var(--primary);
+    background: var(--gold);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
-  .trust-icon svg { width: 16px; height: 16px;  fill: none; stroke: #FFFFFF; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  .trust-icon svg { width: 16px; height: 16px; fill: var(--dark); }
   .trust-divider { width: 1px; height: 28px; background: var(--border); }
 
   /* ─── SECTIONS ─── */
@@ -252,11 +255,11 @@
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--primary);
+    color: var(--gold);
     margin-bottom: 12px;
   }
   h2 {
-    font-family: 'Cambria', Georgia, 'Times New Roman', serif;
+    font-family: 'Playfair Display', serif;
     font-size: clamp(28px, 4vw, 42px);
     font-weight: 700;
     line-height: 1.2;
@@ -283,14 +286,14 @@
     margin: 0 auto;
   }
   .hook-quote {
-    font-family: 'Cambria', Georgia, 'Times New Roman', serif;
+    font-family: 'Playfair Display', serif;
     font-size: clamp(22px, 3.5vw, 36px);
     font-weight: 700;
     line-height: 1.35;
     color: var(--white);
     margin-bottom: 12px;
   }
-  .hook-quote em { color: var(--white); font-style: italic; }
+  .hook-quote em { color: var(--gold); font-style: normal; }
   .hook-sub {
     font-size: 16px;
     color: rgba(255,255,255,0.6);
@@ -303,7 +306,7 @@
     margin: 0 auto;
     border-radius: var(--radius);
     overflow: hidden;
-    border: 1px solid rgba(0,87,184,0.5);
+    border: 1px solid rgba(201,153,58,0.5);
   }
   .hook-input {
     flex: 1;
@@ -311,17 +314,17 @@
     background: rgba(255,255,255,0.07);
     border: none;
     color: var(--white);
-    font-family: 'Calibri', 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 14px;
     outline: none;
   }
   .hook-input::placeholder { color: rgba(255,255,255,0.35); }
   .hook-send {
     padding: 14px 22px;
-    background: var(--primary);
-    color: var(--white);
+    background: var(--gold);
+    color: var(--dark);
     border: none;
-    font-family: 'Calibri', 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -330,7 +333,7 @@
     display: inline-flex;
     align-items: center;
   }
-  .hook-send:hover { background: var(--primary-hover); }
+  .hook-send:hover { background: var(--gold-light); }
   .hook-note { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 14px; }
 
   /* ─── WHY TERRY ─── */
@@ -347,11 +350,11 @@
     transition: border-color 0.2s, box-shadow 0.2s;
   }
   .why-card:hover {
-    border-color: var(--primary);
-    box-shadow: 0 4px 24px rgba(0,87,184,0.12);
+    border-color: var(--gold);
+    box-shadow: 0 4px 24px rgba(201,153,58,0.12);
   }
   .why-num {
-    font-family: 'Cambria', Georgia, 'Times New Roman', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 48px;
     font-weight: 900;
     color: var(--border);
@@ -389,7 +392,7 @@
     transition: border-color 0.2s, transform 0.15s;
   }
   .sit-card:hover {
-    border-color: var(--primary);
+    border-color: var(--gold);
     transform: translateY(-2px);
   }
   .sit-icon {
@@ -404,7 +407,7 @@
     margin-top: 20px;
     font-size: 13px;
     font-weight: 600;
-    color: var(--primary);
+    color: var(--gold);
     letter-spacing: 0.04em;
   }
 
@@ -421,7 +424,7 @@
     padding: 28px 24px;
     position: relative;
   }
-  .stars { color: var(--primary); font-size: 16px; margin-bottom: 14px; letter-spacing: 2px; }
+  .stars { color: var(--gold); font-size: 16px; margin-bottom: 14px; letter-spacing: 2px; }
   .review-text { font-size: 15px; color: var(--text); line-height: 1.65; margin-bottom: 18px; font-style: italic; }
   .reviewer { font-size: 13px; font-weight: 600; color: var(--muted); }
   .reviews-cta { text-align: center; }
@@ -431,7 +434,7 @@
     gap: 8px;
     font-size: 15px;
     font-weight: 600;
-    color: var(--primary);
+    color: var(--gold);
     text-decoration: none;
   }
   .reviews-cta a:hover { text-decoration: underline; }
@@ -444,7 +447,6 @@
     padding: 80px 24px;
   }
   .final-cta h2 { color: var(--white); margin-bottom: 12px; }
-  .final-cta .section-label { color: var(--white); }
   .final-cta .section-sub { color: rgba(255,255,255,0.6); margin: 0 auto 48px; }
   .final-grid {
     display: grid;
@@ -454,7 +456,7 @@
     margin: 0 auto;
   }
   .final-option {
-    background: var(--primary);
+    background: var(--dark-3);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: var(--radius-lg);
     padding: 28px 20px;
@@ -463,14 +465,14 @@
     transition: border-color 0.2s;
     display: block;
   }
-  .final-option:hover { border-color: var(--primary); }
+  .final-option:hover { border-color: var(--gold); }
   .final-option-icon { font-size: 24px; margin-bottom: 10px; display: block; }
   .final-option h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
   .final-option p { font-size: 13px; color: rgba(255,255,255,0.5); }
 
   /* ─── FOOTER ─── */
   footer {
-    background: #3B5166;
+    background: #0C0C0C;
     color: rgba(255,255,255,0.4);
     text-align: center;
     padding: 28px 24px;
@@ -587,7 +589,7 @@
 <!-- ═══ GOLDEN HOOK ═══ -->
 <div class="hook-section">
   <div class="hook-inner">
-    <p class="section-label" style="color: var(--white);">The Easiest Way to Start</p>
+    <p class="section-label" style="color: var(--gold);">The Easiest Way to Start</p>
     <h2 class="hook-quote">
       Browsing any West Herr vehicle online?<br>
       <em>Send me the link — I'll structure the deal for you.</em>
