@@ -164,15 +164,18 @@
     font-weight: 500;
     border: 1px solid rgba(255,255,255,0.3);
     transition: border-color 0.15s, background 0.15s;
-  }
+  
   .cta-secondary:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
 
   /* Hero photo side */
   .hero-visual {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 16px;
+    width: 100%;
+    max-width: 380px;
+    margin-left: auto;
   }
   .hero-photo-frame {
     width: 100%;
@@ -497,7 +500,7 @@
       gap: 40px;
       padding: 48px 20px;
     }
-    .hero-visual { align-items: center; }
+    .hero-visual { align-items: center; max-width: 280px; margin: 0 auto; }
     .hero-photo-frame { max-width: 280px; }
     .why-grid, .situation-grid, .reviews-grid, .final-grid {
       grid-template-columns: 1fr;
@@ -655,11 +658,11 @@
         <p>No pressure here. Ask me anything — payment ranges, trade-in values, model comparisons. I'll give you straight answers.</p>
         <span class="sit-arrow">Text Terry a question →</span>
       </a>
-      <span class="sit-arrow">Text Terry your vehicle info →</span>
+<a href="sms:6098658811" class="sit-card">
         <span class="sit-icon">💰</span>
         <h3>I want to know what my trade-in is worth</h3>
-        <p>Most people are surprised — sometimes pleasantly. Let's find out what your current vehicle can do for your next deal.</p>
-        <span class="sit-arrow">Start your trade estimate →</span>
+        <p>Most people are surprised, sometimes pleasantly. Text me your year, make, model, and mileage. I'll get you a real number.</p>
+        <span class="sit-arrow">Text Terry your vehicle info →</span>
       </a>
     </div>
   </div>
