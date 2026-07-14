@@ -80,6 +80,31 @@
   .btn-text:hover { opacity: 0.85; background: rgba(255,255,255,0.06); }
   .icon { width: 14px; height: 14px; flex-shrink: 0; }
 
+  .subnav {
+    background: var(--dark-2);
+    padding: 10px 24px;
+    display: flex;
+    gap: 28px;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .subnav a {
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    opacity: 0.85;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .subnav a:hover { opacity: 1; text-decoration: underline; }
+  @media (max-width: 768px) {
+    .subnav { gap: 16px; padding: 10px 16px; justify-content: flex-start; }
+    .subnav a { font-size: 12px; }
+  }
+
   /* ─── HERO ─── */
   .hero {
     margin-top: 48px;
@@ -532,6 +557,11 @@
 </div>
 
 <div style="background: var(--dark); padding-top: 48px;">
+<div class="subnav">
+  <a href="/math.html">First Principles Math Hub</a>
+  <a href="/logistics.html">WNY Vehicle Logistics</a>
+  <a href="/playbooks.html">YouTube Playbooks &amp; Frameworks</a>
+</div>
 <div class="hero">
   <div class="hero-text">
     <div class="hero-eyebrow">West Herr Chevrolet of Williamsville</div>
