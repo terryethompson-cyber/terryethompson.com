@@ -601,6 +601,7 @@
  <a href="/math.html">Car Math</a>
 <a href="/logistics.html">Buying Tools</a>
 <a href="/playbooks.html">Video Playbooks</a>
+<a href="/appointment.html">Book Appointment</a>
 </div>
 <div class="hero">
   <div class="hero-text">
@@ -808,5 +809,18 @@
   <p style="margin-top:8px;">© 2026 Terry Thompson · All rights reserved · Not the dealership — Terry's personal brand site</p>
 </footer>
 
+<script>
+  (function() {
+    function fixMobileNavOffset() {
+      var bar = document.querySelector('.sticky-bar');
+      var subnav = document.querySelector('.subnav-mobile');
+      if (bar && subnav) {
+        subnav.style.marginTop = bar.offsetHeight + 'px';
+      }
+    }
+    window.addEventListener('load', fixMobileNavOffset);
+    window.addEventListener('resize', fixMobileNavOffset);
+  })();
+</script>
 </body>
 </html>
