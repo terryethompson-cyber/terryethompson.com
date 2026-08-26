@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vehicle Guides | Terry Thompson | West Herr Chevrolet of Williamsville</title>
+<meta name="description" content="Straight-answer guides to the vehicles I sell: trims, timing, what actually changed, and what it means for Buffalo driving. Written by Terry Thompson at West Herr Chevrolet of Williamsville.">
+<link rel="canonical" href="https://terryethompson.com/Vehicles/">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+--primary: #0057B8;
+--primary-hover: #004A9C;
+--primary-pale: #D6DBDF;
+--dark: #3B5166;
+--dark-2: #2C3E50;
+--light: #FAFAFA;
+--white: #FFFFFF;
+--text: #2C3E50;
+--muted: #6E7C87;
+--border: #D6DBDF;
+--radius: 4px;
+--radius-lg: 10px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Calibri', 'Segoe UI', Helvetica, Arial, sans-serif;
+background: var(--white);
+color: var(--text);
+font-size: 16px;
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
+}
+
+.sticky-bar {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 999;
+background: var(--dark);
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 10px 24px;
+gap: 12px;
+}
+.sticky-bar .brand {
+color: var(--white);
+font-size: 13px;
+font-weight: 500;
+letter-spacing: 0.04em;
+flex: 1;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+.sticky-bar .brand span { color: var(--white); font-weight: 700; }
+.sticky-ctas { display: flex; gap: 8px; flex-shrink: 0; }
+.btn-call, .btn-text {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+padding: 8px 16px;
+border-radius: var(--radius);
+font-size: 13px;
+font-weight: 600;
+text-decoration: none;
+letter-spacing: 0.02em;
+transition: background 0.15s, opacity 0.15s;
+cursor: pointer;
+}
+.btn-call { background: var(--white); color: var(--primary); }
+.btn-call:hover { background: var(--light); color: var(--primary-hover); }
+.btn-text { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.35); }
+.btn-text:hover { opacity: 0.85; background: rgba(255,255,255,0.06); }
+.icon { width: 14px; height: 14px; flex-shrink: 0; }
+
+.sticky-nav {
+display: flex;
+gap: 22px;
+align-items: center;
+margin-right: 24px;
+}
+.sticky-nav a {
+color: var(--white);
+font-size: 18px;
+font-weight: 500;
+letter-spacing: 0.04em;
+text-decoration: none;
+opacity: 0.85;
+padding-bottom: 3px;
+border-bottom: 1px solid transparent;
+white-space: nowrap;
+transition: opacity 0.15s, border-color 0.15s;
+}
+.sticky-nav a:hover { opacity: 1; border-bottom-color: var(--white); }
+.sticky-nav a[aria-current="page"] { opacity: 1; border-bottom-color: var(--white); }
+
+.subnav-mobile {
+display: none;
+background: var(--dark);
+border-top: 1px solid rgba(255,255,255,0.12);
+padding: 10px 16px;
+gap: 16px;
+justify-content: flex-start;
+overflow-x: auto;
+}
+.subnav-mobile a {
+color: var(--white);
+font-size: 12px;
+font-weight: 600;
+text-decoration: none;
+opacity: 0.85;
+white-space: nowrap;
+flex-shrink: 0;
+}
+.subnav-mobile a:hover { opacity: 1; text-decoration: underline; }
+
+@media (max-width: 900px) {
+.sticky-nav { display: none; }
+.subnav-mobile { display: flex; }
+}
+
+.guide-hero {
+margin-top: 48px;
+background: var(--dark);
+color: var(--white);
+padding: 72px 24px 60px;
+}
+.guide-hero-inner { max-width: 1100px; margin: 0 auto; }
+.hero-eyebrow {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+font-size: 12px;
+font-weight: 600;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: var(--white);
+margin-bottom: 20px;
+}
+.hero-eyebrow::before {
+content: '';
+display: block;
+width: 24px;
+height: 2px;
+background: var(--white);
+}
+h1 {
+font-family: 'Cambria', Georgia, 'Times New Roman', serif;
+font-size: clamp(36px, 5vw, 56px);
+font-weight: 900;
+line-height: 1.1;
+color: var(--white);
+margin-bottom: 20px;
+}
+h1 em { font-style: italic; color: var(--white); }
+.hero-sub {
+font-size: 17px;
+font-weight: 300;
+line-height: 1.65;
+color: rgba(255,255,255,0.72);
+max-width: 620px;
+}
+
+section { padding: 72px 24px; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-label {
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: var(--primary);
+margin-bottom: 12px;
+}
+h2 {
+font-family: 'Cambria', Georgia, 'Times New Roman', serif;
+font-size: clamp(28px, 4vw, 42px);
+font-weight: 700;
+line-height: 1.2;
+color: var(--text);
+margin-bottom: 16px;
+}
+.section-sub {
+font-size: 17px;
+color: var(--muted);
+max-width: 620px;
+line-height: 1.65;
+margin-bottom: 40px;
+}
+
+.summary-bar {
+background: var(--primary-pale);
+border-top: 2px solid var(--primary);
+border-bottom: 1px solid var(--border);
+padding: 32px 24px;
+}
+.summary-inner { max-width: 1100px; margin: 0 auto; }
+.summary-inner .label {
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: var(--primary);
+margin-bottom: 10px;
+}
+.summary-inner p { font-size: 17px; color: var(--text); line-height: 1.65; max-width: 860px; }
+
+/* Guide directory. Add another .guide-card and it slots straight in. */
+.guide-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
+.guide-card {
+display: flex;
+flex-direction: column;
+padding: 28px 24px;
+border: 1px solid var(--border);
+border-radius: var(--radius-lg);
+background: var(--white);
+text-decoration: none;
+color: inherit;
+transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.guide-card:hover {
+border-color: var(--primary);
+box-shadow: 0 4px 24px rgba(0,87,184,0.12);
+transform: translateY(-2px);
+}
+.guide-card:focus-visible {
+outline: 2px solid var(--primary);
+outline-offset: 3px;
+}
+.guide-tag {
+display: inline-block;
+align-self: flex-start;
+background: var(--primary-pale);
+color: var(--primary);
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+padding: 4px 10px;
+border-radius: var(--radius);
+margin-bottom: 12px;
+}
+.guide-card h3 {
+font-family: 'Cambria', Georgia, 'Times New Roman', serif;
+font-size: 22px;
+font-weight: 700;
+color: var(--text);
+margin-bottom: 10px;
+}
+.guide-card p { font-size: 15px; color: var(--muted); line-height: 1.65; }
+.guide-card .read-on {
+margin-top: 18px;
+font-size: 14px;
+font-weight: 600;
+color: var(--primary);
+}
+
+/* Shown when no guide covers what someone is looking for. */
+.guide-card.is-request {
+border-style: dashed;
+background: var(--light);
+}
+.guide-card.is-request:hover { border-style: solid; }
+
+.disclaimer {
+background: var(--light);
+border-top: 1px solid var(--border);
+padding: 28px 24px;
+}
+.disclaimer p {
+max-width: 1100px;
+margin: 0 auto;
+font-size: 13px;
+color: var(--muted);
+line-height: 1.6;
+}
+
+.final-cta {
+background: var(--dark-2);
+color: var(--white);
+text-align: center;
+padding: 72px 24px;
+}
+.final-cta h2 { color: var(--white); margin-bottom: 12px; }
+.final-cta .section-label { color: var(--white); }
+.final-cta .section-sub { color: rgba(255,255,255,0.6); margin: 0 auto 40px; }
+.final-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 16px;
+max-width: 760px;
+margin: 0 auto;
+}
+.final-option {
+background: var(--white);
+border: 1px solid transparent;
+border-radius: var(--radius-lg);
+padding: 28px 20px;
+text-decoration: none;
+color: var(--text);
+transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+display: block;
+}
+.final-option:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+border-color: var(--border);
+}
+.final-option-icon { font-size: 24px; margin-bottom: 10px; display: block; }
+.final-option h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+.final-option p { font-size: 13px; color: var(--muted); }
+
+footer {
+background: var(--dark);
+color: rgba(255,255,255,0.4);
+text-align: center;
+padding: 28px 24px;
+font-size: 13px;
+line-height: 1.7;
+}
+footer a { color: rgba(255,255,255,0.55); text-decoration: none; }
+footer strong { color: rgba(255,255,255,0.7); }
+
+@media (max-width: 768px) {
+.guide-grid, .final-grid { grid-template-columns: 1fr; }
+.guide-hero { padding: 48px 20px 44px; }
+section { padding: 48px 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+* { transition: none !important; }
+html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="sticky-bar" style="display: flex; flex-direction: column; padding: 0;">
+<div class="top-utility-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 8px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); background-color: rgba(0,0,0,0.2);">
+<div class="utility-tagline" style="font-size: 13px; font-weight: 500; letter-spacing: 0.5px; color: #e2e8f0;">
+Automotive Advisor | Chevrolet &amp; 27 Other Brands
+</div>
+<div class="sticky-ctas" style="margin: 0; display: flex; gap: 12px;">
+<a href="tel:6098658811" class="btn-call">
+<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+Call Terry
+</a>
+<a href="sms:6098658811" class="btn-text">
+<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+Text Terry
+</a>
+</div>
+</div>
+
+<div class="bottom-nav-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 12px 24px;">
+<div class="brand">
+<a href="/" style="color:inherit;text-decoration:none;"><span>Terry Thompson</span></a>
+</div>
+<div class="sticky-nav">
+<a href="/Vehicles/" aria-current="page">Vehicle Guides</a>
+<a href="/math.html">Car Math</a>
+<a href="/logistics.html">Buying Tools</a>
+<a href="/playbooks.html">Video Playbooks</a>
+<a href="/appointment.html">Book Appointment</a>
+</div>
+</div>
+</div>
+
+<div style="background: var(--dark); padding-top: 48px;">
+<div class="subnav-mobile">
+<a href="/Vehicles/">Vehicle Guides</a>
+<a href="/math.html">Car Math</a>
+<a href="/logistics.html">Buying Tools</a>
+<a href="/playbooks.html">Video Playbooks</a>
+<a href="/appointment.html">Book Appointment</a>
+</div>
+
+<div class="guide-hero">
+<div class="guide-hero-inner">
+<div class="hero-eyebrow">Vehicle Guides</div>
+<h1>The whole story on a vehicle.<br><em>Before you walk in.</em></h1>
+<p class="hero-sub">
+Manufacturer sites tell you what's exciting. These guides tell you what's actually different this model year, which trim fits how you really drive, when the vehicle lands, and what it means for a Buffalo winter.
+</p>
+</div>
+</div>
+</div>
+
+<div class="summary-bar">
+<div class="summary-inner">
+<p class="label">Why these exist</p>
+<p>
+Most of what you'll find online about a new model year is a press release with the adjectives left in. I write these to answer the questions customers actually ask me on the showroom floor — what changed, what it costs, what it tows, and whether waiting for next year is worth it.
+</p>
+</div>
+</div>
+
+<section>
+<div class="section-inner">
+<p class="section-label">The Guides</p>
+<h2>Available now.</h2>
+<p class="section-sub">
+More are on the way. If the vehicle you're weighing up isn't here yet, text me and I'll walk you through it directly.
+</p>
+
+<div class="guide-grid">
+
+<a class="guide-card" href="/Vehicles/2027-chevy-tahoe.html">
+<span class="guide-tag">Full-Size SUV</span>
+<h3>2027 Chevrolet Tahoe</h3>
+<p>Every trim, the production timeline, what's new for the model year, and what it means for Buffalo winters.</p>
+<span class="read-on">Read the guide →</span>
+</a>
+
+<a class="guide-card is-request" href="sms:6098658811">
+<span class="guide-tag">Not Listed?</span>
+<h3>Ask about any vehicle</h3>
+<p>Chevy, GMC, Toyota, Honda, Acura — any of our 27 brands. Text me the model you're considering and I'll give you the same straight answers in writing.</p>
+<span class="read-on">Text 609-865-8811 →</span>
+</a>
+
+</div>
+</div>
+</section>
+
+<div class="final-cta">
+<div class="section-inner">
+<p class="section-label">Next Step</p>
+<h2>Questions? Let's talk it through.</h2>
+<p class="section-sub">
+No gatekeepers, no call centers. Whether you're ordering next week or just starting to look, I'll give you straight answers.
+</p>
+<div class="final-grid">
+<a href="tel:6098658811" class="final-option">
+<span class="final-option-icon">📞</span>
+<h4>Call</h4>
+<p>609-865-8811<br>Terry direct</p>
+</a>
+<a href="sms:6098658811" class="final-option">
+<span class="final-option-icon">💬</span>
+<h4>Text</h4>
+<p>609-865-8811<br>Terry responds personally</p>
+</a>
+<a href="/appointment.html" class="final-option">
+<span class="final-option-icon">📅</span>
+<h4>Book a Time</h4>
+<p>Set up a no-pressure<br>conversation</p>
+</a>
+</div>
+</div>
+</div>
+
+<div class="disclaimer">
+<p>
+Model year details in these guides reflect manufacturer order guides and industry reporting at the time of writing. Specifications, packaging, and production schedules can change before vehicles reach dealers. Always confirm final specifications and pricing on the window sticker. All prices exclude applicable taxes, finance charges, title, registration and dealer document/service fees. Vehicle availability, pricing, and description are subject to change without prior notice. All finance and lease offers are on approved credit. See dealer for complete details.
+</p>
+</div>
+
+<footer>
+<p>
+<strong>Terry Thompson</strong> · West Herr Chevrolet of Williamsville · Buffalo, New York<br>
+<a href="mailto:terry.thompson@westherr.com">terry.thompson@westherr.com</a> ·
+<a href="tel:6098658811">609-865-8811</a>
+</p>
+<p style="margin-top:8px;">© 2026 Terry Thompson · All rights reserved · Not the dealership — Terry's personal brand site</p>
+</footer>
+
+
+<script>
+  (function() {
+    function fixMobileNavOffset() {
+      var bar = document.querySelector('.sticky-bar');
+      var subnav = document.querySelector('.subnav-mobile');
+      if (bar && subnav) {
+        subnav.style.marginTop = bar.offsetHeight + 'px';
+      }
+    }
+    window.addEventListener('load', fixMobileNavOffset);
+    window.addEventListener('resize', fixMobileNavOffset);
+  })();
+</script>
+
+</body>
+</html>
