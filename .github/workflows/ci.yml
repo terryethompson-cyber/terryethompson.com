@@ -10,6 +10,11 @@ on:
   schedule:
     - cron: '0 13 * * 1' # Monday mornings, Eastern
   workflow_dispatch:
+    inputs:
+      check_external:
+        description: 'Also check links to other websites (slower, depends on their servers)'
+        type: boolean
+        default: false
 
 jobs:
   links:
@@ -31,8 +36,9 @@ jobs:
 
   external:
     name: External links
-    # Only on the weekly run or when triggered by hand — never blocks a change.
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    # Weekly, or on request. Never on a push or pull request, so a slow
+    # afternoon at someone else's server can't block a change to this site.
+    if: github.event_name == 'schedule' || inputs.check_external
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
