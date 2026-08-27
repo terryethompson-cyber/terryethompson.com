@@ -1,0 +1,249 @@
+/* ===========================================================================
+   site.css — the shared shell.
+
+   Every page links this file. The header, the nav, the footer, the brand
+   colours and the mobile rules live here and nowhere else.
+
+   Before this file existed, each new page was a hand-copy of an older one.
+   A fix made after a copy was taken never reached the copy, so the site
+   drifted apart three separate times: a guide shipped without the mobile
+   nav-offset script, another without the "Vehicle Guides" nav link, a third
+   without the mobile header rules (its header was 157px tall with the
+   tagline on five lines).
+
+   Change the shell HERE. It reaches every page on the next deploy.
+   Page-specific styling stays in that page's own <style> block.
+   =========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Brand system — Graphite / Charcoal Blue / Slate Gray / Fog Gray / Off-White / Cobalt Blue */
+  --primary: #0057B8;       /* Cobalt Blue — sole accent: links, CTAs, highlights */
+  --primary-hover: #004A9C; /* Cobalt Blue, darkened ~15% for hover/active states */
+  --primary-pale: #D6DBDF;  /* Fog Gray — light tint behind accent badges */
+  --dark: #3B5166;          /* Charcoal Blue — dark section backgrounds */
+  --dark-2: #2C3E50;        /* Graphite — secondary dark surface / headings */
+  --light: #FAFAFA;         /* Off-White — page/section background */
+  --white: #FFFFFF;         /* Card backgrounds, reversed text */
+  --text: #2C3E50;          /* Graphite — headings & primary text */
+
+  /* Slate Gray — body/secondary text, captions.
+     Was #6E7C87, which reads at 4.29:1 on white and 4.11:1 on --light.
+     Both fall under the 4.5:1 minimum for text this size, so captions and
+     card copy were legibly thin — worst on a phone in daylight. Darkened
+     5.5% to clear the bar on the stricter of the two grounds:
+       on --white #FFFFFF   4.29:1 -> 4.72:1
+       on --light #FAFAFA   4.11:1 -> 4.53:1
+     11.6 of a possible 441 in RGB distance from the original, so the grey
+     still reads as the same grey. */
+  --muted: #687580;
+
+  --border: #D6DBDF;        /* Fog Gray — borders, dividers, rules */
+  --radius: 4px;
+  --radius-lg: 10px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Calibri', 'Segoe UI', Helvetica, Arial, sans-serif;
+  background: var(--white);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── STICKY HEADER ─── */
+/* Two rows: role + contact buttons on top, name + navigation underneath.
+   These rules used to live as inline style attributes on the markup of every
+   page, which meant the shared sheet could not actually change the header —
+   an inline style beats a stylesheet rule. They are here now, and the markup
+   carries no style attributes, so this file really is the one place to edit. */
+.sticky-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  background: var(--dark);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.top-utility-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 8px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.2);
+}
+
+.bottom-nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 24px;
+}
+
+.sticky-bar .brand {
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sticky-bar .brand a { color: inherit; text-decoration: none; }
+.sticky-bar .brand span { color: var(--white); font-weight: 700; }
+.sticky-ctas { margin: 0; display: flex; gap: 12px; flex-shrink: 0; }
+.btn-call, .btn-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background 0.15s, opacity 0.15s;
+  cursor: pointer;
+}
+
+/* Contrast override for dark sections */
+.btn-call { background: var(--white); color: var(--primary); }
+.btn-call:hover { background: var(--light); color: var(--primary-hover); }
+
+.btn-text { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.35); }
+.btn-text:hover { opacity: 0.85; background: rgba(255,255,255,0.06); }
+.icon { width: 14px; height: 14px; flex-shrink: 0; }
+
+.sticky-nav {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  margin-right: 24px;
+}
+.sticky-nav a {
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  opacity: 0.85;
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+  white-space: nowrap;
+  transition: opacity 0.15s, border-color 0.15s;
+}
+.sticky-nav a:hover { opacity: 1; border-bottom-color: var(--white); }
+/* The page you are already on stays lit. */
+.sticky-nav a[aria-current="page"] { opacity: 1; border-bottom-color: var(--white); }
+
+/* Sits directly under the fixed bar. Holds the compact phone menu, and its
+   padding is the ONE thing keeping the content below out from under the
+   header — .sticky-bar is position:fixed, so it takes up no room in the flow.
+
+   The clearance used to come from three places at once: 48px here, a margin
+   the script set on the menu, and another 48px on each hero. On a phone they
+   stacked into a dead band the height of a thumb; on a wide desktop they
+   still added up to less than the 113px header, so the top of the booking
+   page sat underneath it. One source now: the real measured header height,
+   which site.js writes to --header-height on load and on resize. The
+   fallback covers the first paint and anyone with JavaScript off. */
+.subnav-wrap {
+  background: var(--dark);
+  padding-top: var(--header-height, 113px);
+}
+
+.subnav-mobile {
+  display: none;
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding: 10px 16px;
+  gap: 16px;
+  justify-content: flex-start;
+  overflow-x: auto;
+}
+.subnav-mobile a {
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  opacity: 0.85;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.subnav-mobile a:hover { opacity: 1; text-decoration: underline; }
+
+.utility-tagline {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--white);
+  /* On a phone the full tagline wrapped to four or five lines, making the
+     fixed header eat a quarter of the screen. Never wrap. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  /* Keep the role, drop the brand list. */
+  .tagline-brands { display: none; }
+  /* 'Automotive Advisor' needs 137px; the two buttons take a fixed 243px,
+     so on a phone they cannot share a row. Give the tagline its own line
+     rather than truncating it to 'Automotive A...'. */
+  .top-utility-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .utility-tagline { width: 100%; }
+  /* Belt and braces: if a page ever grows an inline align-items on the row
+     again, align-self on the child still wins without needing !important. */
+  .sticky-ctas { align-self: flex-start; }
+}
+
+@media (max-width: 900px) {
+  .sticky-nav { display: none; }
+  .subnav-mobile { display: flex; }
+}
+
+/* ─── FOOTER ─── */
+/* The footer text was rgba(255,255,255,0.4) over --dark, which reads at
+   2.74:1 — well under the 4.5:1 minimum, and this is where the address and
+   hours sit. Raised to 0.75 (5.48:1). Still visibly quieter than the body
+   copy above it, just no longer a squint. */
+footer {
+  background: var(--dark);
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  padding: 28px 24px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+footer a { color: rgba(255,255,255,0.88); text-decoration: none; }
+footer a:hover { color: var(--white); text-decoration: underline; }
+footer strong { color: var(--white); }
+
+/* ─── QUIET TEXT ON A DARK GROUND ─── */
+/* The sub-headline under the closing call-to-action, and the lead-in on the
+   recommendation section. Each page carried its own copy of this at
+   rgba(255,255,255,0.6), which reads at 4.15:1 against --dark — under the
+   4.5:1 minimum. One rule at 0.75 (5.48:1), in one place. */
+.final-cta .section-sub,
+.rec-section .section-sub { color: rgba(255,255,255,0.75); }
+
+/* ─── SHARED MOBILE ─── */
+@media (max-width: 768px) {
+  /* The name is already the page they are on; the buttons matter more. */
+  .sticky-bar .brand { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  html { scroll-behavior: auto; }
+}

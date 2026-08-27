@@ -29,6 +29,40 @@ A real browser drives the site the way a customer would:
 - The booking calendar is really embedded and points at Google Calendar.
 - Every call and text link is your real number.
 - On a phone, the menu isn't hidden behind the sticky header.
+- The top of every page clears the fixed header at six screen widths — not cut
+  off underneath it, and not sitting below a band of empty colour.
+
+### Every page still pulls from the one shared file
+
+`/site.css` and `/site.js` hold the header, the nav, the footer, the brand
+colours and the phone rules. Before they existed, each new page was a
+hand-copy of an older one, so a fix made after the copy was taken never
+reached the copy. That happened three times: a guide shipped without the
+menu-offset script, another without the **Vehicle Guides** link, a third
+without the phone header rules — its header was 157px tall with the tagline
+on five lines.
+
+So the checks now hold the pages to it:
+
+- Every page with a header links `/site.css` and loads `/site.js`.
+- The header really arrives — checked by measuring the rendered colour, not
+  by trusting the `<link>` tag.
+- The header markup is the same block on every page, character for character.
+- No page carries inline styles on its header. An inline style beats the
+  shared file, so one would quietly put that page back out of reach.
+- No page redefines the brand colours in its own `<style>`.
+- The nav is the same set of links everywhere.
+
+**What this means for you:** to change the header, the nav, the footer or a
+brand colour, edit `site.css` once. It reaches every page. If you ever paste a
+page's shell into a new file by hand, these checks will tell you.
+
+### Small text is dark enough to read
+
+Every piece of text on every page is measured against whatever is actually
+behind it, and held to the standard readability bar (4.5:1, or 3:1 for large
+text). This catches the grey that looks fine on a desktop monitor indoors and
+goes thin on a phone in daylight — which is where your customers read it.
 
 ### Pages are shareable, findable and quick
 
