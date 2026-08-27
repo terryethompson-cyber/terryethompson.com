@@ -223,57 +223,42 @@
     object-fit: cover;
     display: block;
   }
-  .hero-badge {
-    background: var(--white);
-    color: var(--primary);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 8px 16px;
-    border-radius: var(--radius);
-    align-self: flex-start;
-    white-space: nowrap;  }
 
   /* ─── TRUST BAR ─── */
   .trust-bar {
-    background: var(--primary-pale);
-    border-top: 2px solid var(--primary);
+    background: var(--light);
+    border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 20px 24px;
+    padding: 22px 24px;
   }
+  /* A fixed column count, not wrap-and-centre. Three items always sit three
+     across, so nothing can be orphaned onto a line of its own. */
   .trust-inner {
     max-width: 1100px;
     margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
   }
+  /* The rule between items is a border on the item itself. A separate divider
+     element is what stranded a stray line at the end of the row before.
+     Stretched cells plus centred content keeps the row even at widths where
+     the longest label wraps to two lines. */
   .trust-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-  }
-  .trust-item span {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-  }
-  .trust-icon {
-    width: 32px;
-    height: 32px;
-    background: var(--primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    text-align: center;
+    padding: 2px 20px;
+    border-left: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.5;
+    color: var(--muted);
   }
-  .trust-icon svg { width: 16px; height: 16px; fill: none; stroke: #FFFFFF; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .trust-divider { width: 1px; height: 28px; background: var(--primary); opacity: 0.2; }
+  .trust-item:first-child { border-left: none; }
 
   /* ─── SECTIONS ─── */
   section { padding: 80px 24px; }
@@ -532,8 +517,8 @@
     .why-grid, .situation-grid, .reviews-grid, .final-grid {
       grid-template-columns: 1fr;
     }
-    .trust-inner { gap: 20px; }
-    .trust-divider { display: none; }
+    .trust-inner { grid-template-columns: 1fr; gap: 14px; }
+    .trust-item { border-left: none; padding: 0; }
     .sticky-bar .brand { display: none; }
     .hook-input-row { flex-direction: column; }
     .hook-input, .hook-send { border-radius: 0; }
@@ -601,41 +586,8 @@
       <img src="/terry-hero.jpg" alt="Terry Thompson, Certified Sales Consultant at West Herr Chevrolet of Williamsville" width="830" height="1067" loading="eager">
       
     </div>
-    <div class="hero-badge">&#9733; Mark of Excellence Award Winner</div>
   </div>
 </div>
-</div>
-
-<div class="trust-bar">
-  <div class="trust-inner">
-    <div class="trust-item">
-      <div class="trust-icon">
-        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-      </div>
-      <span>Automotive Advisor</span>
-    </div>
-    <div class="trust-divider"></div>
-    <div class="trust-item">
-      <div class="trust-icon">
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      </div>
-      <span>GM Mark of Excellence Award</span>
-    </div>
-    <div class="trust-divider"></div>
-    <div class="trust-item">
-      <div class="trust-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-      </div>
-      <span>30 Years Tech Background</span>
-    </div>
-    <div class="trust-divider"></div>
-    <div class="trust-item">
-      <div class="trust-icon">
-        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      </div>
-      <span>West Herr — #1 Volume Dealership in WNY</span>
-    </div>
-  </div>
 </div>
 
 <div class="hook-section">
@@ -656,6 +608,14 @@
       <a href="sms:6098658811" class="hook-send">Text It to Terry →</a>
     </div>
     <p class="hook-note">Or text the link directly to Terry · No bots. Terry responds personally.</p>
+  </div>
+</div>
+
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">New York State's Largest Auto Group</div>
+    <div class="trust-item">GM Mark of Excellence Award</div>
+    <div class="trust-item">30 Years in Tech</div>
   </div>
 </div>
 
