@@ -225,10 +225,12 @@
   }
 
   /* ─── TRUST BAR ─── */
+  /* Fog grey, so the strip still separates now that the section above it and
+     the sections below it are both white. Note --border is the same value as
+     this grey, so the rules between items use --muted; a --border rule on this
+     ground would be invisible against it. */
   .trust-bar {
-    background: var(--light);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    background: var(--primary-pale);
     padding: 22px 24px;
   }
   /* A fixed column count, not wrap-and-centre. Three items always sit three
@@ -250,13 +252,13 @@
     justify-content: center;
     text-align: center;
     padding: 2px 20px;
-    border-left: 1px solid var(--border);
+    border-left: 1px solid var(--muted);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     line-height: 1.5;
-    color: var(--muted);
+    color: var(--text);
   }
   .trust-item:first-child { border-left: none; }
 
@@ -288,14 +290,13 @@
   }
 
   /* ─── GOLDEN HOOK ─── */
+  /* Light ground on purpose: this sits directly under the charcoal-blue hero,
+     and when it shared that colour the two read as one unbroken block. */
   .hook-section {
-    background: var(--dark);
-    color: var(--white);
+    background: var(--white);
+    color: var(--text);
     padding: 72px 24px;
     text-align: center;
-  }
-  .hook-section .section-label {
-    color: var(--white);
   }
   .hook-inner {
     max-width: 760px;
@@ -306,13 +307,13 @@
     font-size: clamp(22px, 3.5vw, 36px);
     font-weight: 700;
     line-height: 1.35;
-    color: var(--white);
+    color: var(--text);
     margin-bottom: 12px;
   }
-  .hook-quote em { color: var(--white); font-style: italic; }
+  .hook-quote em { color: var(--text); font-style: italic; }
   .hook-sub {
     font-size: 16px;
-    color: rgba(255,255,255,0.6);
+    color: var(--muted);
     margin-bottom: 36px;
   }
   .hook-input-row {
@@ -322,23 +323,24 @@
     margin: 0 auto;
     border-radius: var(--radius);
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid var(--border);
   }
   .hook-input {
     flex: 1;
     padding: 14px 18px;
-    background: rgba(255,255,255,0.07);
+    background: var(--white);
     border: none;
-    color: var(--white);
+    color: var(--text);
     font-family: 'Calibri', 'Segoe UI', Helvetica, Arial, sans-serif;
     font-size: 14px;
     outline: none;
   }
-  .hook-input::placeholder { color: rgba(255,255,255,0.35); }
+  .hook-input::placeholder { color: var(--muted); }
+  .hook-input:focus { background: var(--light); }
   .hook-send {
     padding: 14px 22px;
-    background: var(--white);
-    color: var(--primary);
+    background: var(--primary);
+    color: var(--white);
     border: none;
     font-family: 'Calibri', 'Segoe UI', Helvetica, Arial, sans-serif;
     font-size: 14px;
@@ -348,9 +350,10 @@
     text-decoration: none;
     display: inline-flex;
     align-items: center;
+    white-space: nowrap;
   }
-  .hook-send:hover { background: var(--light); color: var(--primary-hover); }
-  .hook-note { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 14px; }
+  .hook-send:hover { background: var(--primary-hover); color: var(--white); }
+  .hook-note { font-size: 12px; color: var(--muted); margin-top: 14px; }
 
   /* ─── WHY TERRY ─── */
   .why-grid {
