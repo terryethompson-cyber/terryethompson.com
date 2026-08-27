@@ -130,6 +130,24 @@ flex-shrink: 0;
 }
 .subnav-mobile a:hover { opacity: 1; text-decoration: underline; }
 
+/* On a phone the full tagline wrapped to four or five lines, making the
+   fixed header eat a quarter of the screen. Keep the role, drop the brand
+   list, and never wrap. */
+.utility-tagline { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+@media (max-width: 700px) {
+  .tagline-brands { display: none; }
+  /* 'Automotive Advisor' needs 137px; the two buttons take a fixed 243px,
+     so on a phone they cannot share a row. Give the tagline its own line
+     rather than truncating it to 'Automotive A...'. */
+  .top-utility-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .utility-tagline { width: 100%; }
+  /* The row carries align-items:center as an inline style, which beats a
+     stylesheet rule, so the buttons centred while the tagline spanned the
+     row. align-self on the child wins without needing !important. */
+  .sticky-ctas { align-self: flex-start; }
+}
+
+
 @media (max-width: 900px) {
 .sticky-nav { display: none; }
 .subnav-mobile { display: flex; }
@@ -430,7 +448,7 @@ section { padding: 52px 20px; }
 <div class="sticky-bar" style="display: flex; flex-direction: column; padding: 0;">
 <div class="top-utility-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 8px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); background-color: rgba(0,0,0,0.2);">
 <div class="utility-tagline" style="font-size: 13px; font-weight: 500; letter-spacing: 0.5px; color: #e2e8f0;">
-Automotive Advisor | Chevrolet &amp; 27 Other Brands
+Automotive Advisor<span class="tagline-brands"> | Chevrolet &amp; 27 Other Brands</span>
 </div>
 <div class="sticky-ctas" style="margin: 0; display: flex; gap: 12px;">
 <a href="tel:6098658811" class="btn-call">
