@@ -1,8 +1,8 @@
-name: Check links
+name: Check site
 
-# Runs on every change to the site, so a broken link is caught before a
-# customer finds it. The external-link check runs weekly instead, because it
-# depends on other people's servers being up.
+# Runs on every change, so problems are caught before a customer finds them.
+# The external-link check runs weekly instead, because it depends on other
+# people's servers being up.
 on:
   push:
     branches: [main]
@@ -17,8 +17,8 @@ on:
         default: false
 
 jobs:
-  links:
-    name: Internal links and page reachability
+  pages:
+    name: Links, pages and sharing
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -27,12 +27,35 @@ jobs:
         with:
           node-version: '22'
 
-      # No dependencies to install — these checks are plain Node.
+      # These checks have no dependencies — plain Node, nothing to install.
       - name: Make sure the checker itself works
         run: npm run test:self
 
       - name: Check every link on the site
-        run: npm test
+        run: npm run test:links
+
+      - name: Check pages are shareable, findable and quick
+        run: npm run test:pages
+
+  buttons:
+    name: Buttons and forms actually work
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Get a browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Drive the site like a customer would
+        run: npm run test:browser
 
   external:
     name: External links

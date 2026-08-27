@@ -1,3 +1,2 @@
 # Local tooling only — never part of the published site
 node_modules/
-package-lock.json
