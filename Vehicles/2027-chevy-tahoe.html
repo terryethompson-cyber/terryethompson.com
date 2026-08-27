@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2027 Chevrolet Tahoe Guide | Terry Thompson | West Herr Chevrolet of Williamsville</title>
 <meta name="description" content="2027 Chevrolet Tahoe: every trim, the production timeline, what's new, and what it means for Buffalo winters. Straight answers from Terry Thompson at West Herr Chevrolet of Williamsville.">
-<link rel="canonical" href="https://terryethompson.com/vehicles/2027-chevy-tahoe.html">
+<link rel="canonical" href="https://terryethompson.com/Vehicles/2027-chevy-tahoe.html">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -435,6 +435,7 @@ Text Terry
 <a href="/" style="color:inherit;text-decoration:none;"><span>Terry Thompson</span></a>
 </div>
 <div class="sticky-nav">
+<a href="/Vehicles/">Vehicle Guides</a>
 <a href="/math.html">Car Math</a>
 <a href="/logistics.html">Buying Tools</a>
 <a href="/playbooks.html">Video Playbooks</a>
@@ -445,6 +446,7 @@ Text Terry
 
 <div style="background: var(--dark); padding-top: 48px;">
 <div class="subnav-mobile">
+<a href="/Vehicles/">Vehicle Guides</a>
 <a href="/math.html">Car Math</a>
 <a href="/logistics.html">Buying Tools</a>
 <a href="/playbooks.html">Video Playbooks</a>
@@ -665,6 +667,21 @@ Model year details reflect Chevrolet order guides and industry reporting as of A
 </p>
 <p style="margin-top:8px;">© 2026 Terry Thompson · All rights reserved · Not the dealership — Terry's personal brand site</p>
 </footer>
+
+
+<script>
+  (function() {
+    function fixMobileNavOffset() {
+      var bar = document.querySelector('.sticky-bar');
+      var subnav = document.querySelector('.subnav-mobile');
+      if (bar && subnav) {
+        subnav.style.marginTop = bar.offsetHeight + 'px';
+      }
+    }
+    window.addEventListener('load', fixMobileNavOffset);
+    window.addEventListener('resize', fixMobileNavOffset);
+  })();
+</script>
 
 </body>
 </html>

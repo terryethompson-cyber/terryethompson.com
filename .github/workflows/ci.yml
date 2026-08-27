@@ -1,0 +1,51 @@
+name: Check links
+
+# Runs on every change to the site, so a broken link is caught before a
+# customer finds it. The external-link check runs weekly instead, because it
+# depends on other people's servers being up.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '0 13 * * 1' # Monday mornings, Eastern
+  workflow_dispatch:
+    inputs:
+      check_external:
+        description: 'Also check links to other websites (slower, depends on their servers)'
+        type: boolean
+        default: false
+
+jobs:
+  links:
+    name: Internal links and page reachability
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      # No dependencies to install — these checks are plain Node.
+      - name: Make sure the checker itself works
+        run: npm run test:self
+
+      - name: Check every link on the site
+        run: npm test
+
+  external:
+    name: External links
+    # Weekly, or on request. Never on a push or pull request, so a slow
+    # afternoon at someone else's server can't block a change to this site.
+    if: github.event_name == 'schedule' || inputs.check_external
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Check links pointing to other sites
+        run: npm run test:external
