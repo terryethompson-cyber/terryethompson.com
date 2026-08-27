@@ -1,0 +1,5 @@
+# terryethompson.com
+User-agent: *
+Allow: /
+
+Sitemap: https://terryethompson.com/sitemap.xml

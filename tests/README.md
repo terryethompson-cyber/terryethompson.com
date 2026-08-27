@@ -1,71 +1,104 @@
 # Site checks
 
-Automatic checks that run every time the site changes, so broken links get
-caught here instead of by a customer.
+Automatic checks that run every time the site changes, so problems get caught
+here instead of by a customer. You don't have to run anything — GitHub runs
+them for you and emails you if something breaks.
 
 ## What gets checked
 
-**Every link goes somewhere real.** Buttons, nav items, images, the booking
-calendar — all of it. If a link points at a page that isn't there, the check
-fails and tells you which file and which line.
+### Links go somewhere real
 
-**Capital letters match.** This one is easy to miss. A Mac treats `Vehicles`
-and `vehicles` as the same folder, so a link with the wrong capitalisation
-works perfectly on your laptop — and then 404s on the live site, because the
-web server is stricter. The check compares against the real folder names, so
-it catches this before it ships.
+Buttons, nav items, images, the booking calendar. If a link points at a page
+that isn't there, the check fails and names the file and line.
 
-**Every page can be reached.** If you add a page and forget to link to it from
-anywhere, nobody can find it and neither can Google. The check flags it.
+**Capital letters match.** A Mac treats `Vehicles` and `vehicles` as the same
+folder, so a link with the wrong capitalisation works on your laptop and then
+404s on the live site. The check compares against the real folder names.
 
-**Phone and email links are valid.** Every `tel:`, `sms:` and `mailto:` link
-is checked for a usable number or address.
+**Every page can be reached.** Add a page and forget to link to it and nobody
+can find it — not customers, not Google. The check flags it.
 
-**Section links point at real sections.** If a link goes to `page.html#specs`,
-the check confirms `page.html` actually has a section marked `specs`.
+### Buttons and forms actually work
 
-Links to *other* websites (West Herr, the Google review page) are checked too,
-but only once a week. Those depend on someone else's server being up, and a
-slow afternoon at West Herr shouldn't stop you publishing.
+A real browser drives the site the way a customer would:
+
+- Paste a vehicle link, tap **Text It to Terry**, and confirm the link is
+  actually in the message. *(This is the one that matters most — for months
+  that box silently threw away whatever was pasted into it.)*
+- Pressing Enter in that box sends.
+- The booking calendar is really embedded and points at Google Calendar.
+- Every call and text link is your real number.
+- On a phone, the menu isn't hidden behind the sticky header.
+
+### Pages are shareable, findable and quick
+
+- Every page has a title, a description, a proper web address and a tab icon.
+- Every page has the tags that make a **preview card** appear when you text or
+  post the link — title, description and your photo, instead of a bare grey
+  address.
+- The sitemap matches the pages that actually exist.
+- Your phone number and business name are identical everywhere. Google's local
+  search rewards that consistency and punishes drift.
+- No oversized images, and unused heavy files get flagged.
+- Every image has alt text and every page has one main heading.
+
+### Links to other websites
+
+West Herr, your Google review page, the booking calendar. Checked **weekly**,
+never on a normal change, because those depend on someone else's server being
+up and shouldn't stop you publishing.
 
 ## Running them yourself
-
-You don't have to — GitHub runs these automatically on every change, and
-you'll get an email if something breaks. But if you want to check before
-publishing:
 
 ```
 npm test
 ```
 
-That's it. Nothing to install.
+That covers links and page quality, with nothing to install.
+
+To also drive the browser (needs a one-time `npm install`):
+
+```
+npm run test:browser
+```
+
+## After adding a page
+
+Rebuild the sitemap, or the checks will tell you it's stale:
+
+```
+npm run sitemap
+```
 
 ## When something fails
 
-The output tells you the file, the line number, and what's wrong. For example:
+The output names the file, the line and what's wrong:
 
 ```
 Vehicles/2027-chevy-tahoe.html
   line 8   Capitalisation does not match the real file
-    href="https://terryethompson.com/vehicles/2027-chevy-tahoe.html" —
     points at "vehicles/2027-chevy-tahoe.html", but on disk it is
-    "Vehicles/2027-chevy-tahoe.html". This works on a Mac and 404s on
-    the live site.
+    "Vehicles/2027-chevy-tahoe.html". This works on a Mac and 404s
+    on the live site.
 ```
 
-Fix the line it names, and the check goes green.
+Fix the line it names and the check goes green.
+
+**Problems** fail the build. **Worth a look** items don't — they're advisory.
 
 ## Adding a page that shouldn't be linked
 
 Some files are building blocks rather than real pages —
-`brand-spine-snippet.html` is one. Those are listed in `NOT_PAGES` near the top
-of `check-links.mjs`, so they aren't reported as unreachable. Add to that list
-if you create another one.
+`brand-spine-snippet.html` is one. Those live in `NOT_PAGES` at the top of
+`build-sitemap.mjs`. Add to that list if you make another.
 
 ## Files here
 
 | File | What it does |
 |---|---|
-| `check-links.mjs` | The main check. Runs on every change. |
-| `check-external.mjs` | Checks links to other websites. Runs weekly. |
-| `self-test.mjs` | Checks that the checker itself still works. |
+| `check-links.mjs` | Links and page reachability. Every change. |
+| `check-pages.mjs` | Titles, previews, sitemap, image sizes. Every change. |
+| `browser.test.mjs` | Drives a real browser through the buttons. Every change. |
+| `check-external.mjs` | Links to other websites. Weekly. |
+| `build-sitemap.mjs` | Rebuilds `sitemap.xml`. |
+| `self-test.mjs` | Proves the link checker itself still works. |

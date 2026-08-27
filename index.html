@@ -5,6 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terry Thompson | Automotive Advisor & Author, First Principles of Car Buying | West Herr Chevrolet of Williamsville</title>
 <meta name="description" content="Terry Thompson at West Herr Chevrolet of Williamsville. Automotive Advisor, Author of First Principles of Car Buying. Mark of Excellence Award winner. Clarity, confidence, and protection — no pressure.">
+<link rel="canonical" href="https://terryethompson.com/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+<!-- How this page looks when the link is texted or shared -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Terry Thompson">
+<meta property="og:url" content="https://terryethompson.com/">
+<meta property="og:title" content="Terry Thompson — Automotive Advisor, West Herr Chevrolet of Williamsville">
+<meta property="og:description" content="Terry Thompson at West Herr Chevrolet of Williamsville. Automotive Advisor, Author of First Principles of Car Buying. Mark of Excellence Award winner. Clarity, confidence, and protection — no pressure.">
+<meta property="og:image" content="https://terryethompson.com/terry-hero.jpg">
+<meta property="og:image:alt" content="Terry Thompson, Certified Sales Consultant at West Herr Chevrolet of Williamsville">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Terry Thompson — Automotive Advisor, West Herr Chevrolet of Williamsville">
+<meta name="twitter:description" content="Terry Thompson at West Herr Chevrolet of Williamsville. Automotive Advisor, Author of First Principles of Car Buying. Mark of Excellence Award winner. Clarity, confidence, and protection — no pressure.">
+<meta name="twitter:image" content="https://terryethompson.com/terry-hero.jpg">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -677,7 +692,10 @@
       Chevy, GMC, Toyota, Honda, Acura — any of our 27 brands. No obligation. I'll tell you exactly what it pencils out to and what you should ask for.
     </p>
     <div class="hook-input-row">
-      <input class="hook-input" type="url" placeholder="Paste the vehicle link here...">
+      <input class="hook-input" type="url" inputmode="url" enterkeyhint="send"
+             autocomplete="off" autocapitalize="off" spellcheck="false"
+             aria-label="Paste the link to the vehicle you are looking at"
+             placeholder="Paste the vehicle link here...">
       <a href="sms:6098658811" class="hook-send">Text It to Terry →</a>
     </div>
     <p class="hook-note">Or text the link directly to 609-865-8811 · No bots. Terry responds personally.</p>
@@ -822,6 +840,51 @@
     }
     window.addEventListener('load', fixMobileNavOffset);
     window.addEventListener('resize', fixMobileNavOffset);
+  })();
+
+  /**
+   * Carry the pasted vehicle link into the text message.
+   *
+   * Without this the send button is a plain "sms:" link, so whatever the
+   * customer pasted is dropped and their messaging app opens empty. They
+   * assume it sent; Terry never hears from them.
+   *
+   * Note the "?&" before body: iOS wants "sms:number&body=", Android wants
+   * "sms:number?body=". "?&" is the one form both accept.
+   */
+  (function() {
+    var PHONE = '6098658811';
+    var input = document.querySelector('.hook-input');
+    var send = document.querySelector('.hook-send');
+    if (!input || !send) return;
+
+    function messageFor(link) {
+      return "Hi Terry - I'm looking at this vehicle: " + link +
+             ' . What does it pencil out to?';
+    }
+
+    function updateSendLink() {
+      var link = input.value.trim();
+      // With nothing pasted, leave the plain link so the app still opens and
+      // they can type freely.
+      send.href = link
+        ? 'sms:' + PHONE + '?&body=' + encodeURIComponent(messageFor(link))
+        : 'sms:' + PHONE;
+    }
+
+    input.addEventListener('input', updateSendLink);
+    input.addEventListener('change', updateSendLink);
+
+    // Enter should send, not just sit there.
+    input.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        updateSendLink();
+        send.click();
+      }
+    });
+
+    updateSendLink();
   })();
 </script>
 </body>

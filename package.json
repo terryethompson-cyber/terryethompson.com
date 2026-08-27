@@ -5,9 +5,16 @@
   "description": "Website for Terry Thompson, Certified Sales Consultant at West Herr Chevrolet of Williamsville",
   "type": "module",
   "scripts": {
-    "test": "node tests/check-links.mjs",
+    "test": "npm run test:links && npm run test:pages",
+    "test:links": "node tests/check-links.mjs",
+    "test:pages": "node tests/check-pages.mjs",
+    "test:browser": "node --test tests/browser.test.mjs",
     "test:self": "node tests/self-test.mjs",
-    "test:external": "node tests/check-external.mjs"
+    "test:external": "node tests/check-external.mjs",
+    "sitemap": "node tests/build-sitemap.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
   },
   "engines": {
     "node": ">=18"
