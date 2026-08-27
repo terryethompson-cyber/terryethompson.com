@@ -127,6 +127,44 @@ describe('contact links', () => {
   });
 });
 
+describe('the header on a phone', () => {
+  // A new vehicle guide shipped without the mobile header rules and its header
+  // was back to 157px with the tagline on five lines. Nothing caught it, so
+  // this does.
+  test('does not grow tall enough to eat the screen', async () => {
+    const LIMIT = 150; // px. Pages sit at 105-141px with the rules applied.
+    for (const file of htmlFiles()) {
+      const page = await openPage(file, { width: 360, height: 780 });
+      const result = await page.evaluate(() => {
+        const bar = document.querySelector('.sticky-bar');
+        if (!bar) return null;
+        const tagline = document.querySelector('.utility-tagline');
+        const lineHeight = tagline
+          ? parseFloat(getComputedStyle(tagline).lineHeight) || 20
+          : 0;
+        return {
+          height: Math.round(bar.getBoundingClientRect().height),
+          taglineLines: tagline
+            ? Math.round(tagline.getBoundingClientRect().height / lineHeight)
+            : 0,
+        };
+      });
+      await page.close();
+      if (!result) continue;
+
+      assert.ok(
+        result.height <= LIMIT,
+        `${file}: the fixed header is ${result.height}px on a 360px phone ` +
+          `(limit ${LIMIT}px). It is probably missing the mobile header rules.`
+      );
+      assert.ok(
+        result.taglineLines <= 1,
+        `${file}: the tagline wraps to ${result.taglineLines} lines on a phone`
+      );
+    }
+  });
+});
+
 describe('the menu on a phone', () => {
   test('is not hidden behind the sticky header', async () => {
     for (const file of htmlFiles()) {
