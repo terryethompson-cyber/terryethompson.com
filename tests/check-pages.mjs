@@ -100,6 +100,20 @@ for (const page of visitablePages) {
     );
   }
 
+  // The Call and Text buttons must be on every page. They are the point of
+  // the site: whatever page a customer lands on, reaching Terry is one tap.
+  const hasCall = /class=["'][^"']*\bbtn-call\b[^"']*["']/.test(html);
+  const hasText = /class=["'][^"']*\bbtn-text\b[^"']*["']/.test(html);
+  if (!hasCall || !hasText) {
+    const missing = [!hasCall && 'Call Terry', !hasText && 'Text Terry'].filter(Boolean);
+    err(
+      page,
+      `Page is missing the ${missing.join(' and ')} button${missing.length > 1 ? 's' : ''}`,
+      'Every page needs the .btn-call (tel:) and .btn-text (sms:) links in the ' +
+        'header, top right. A customer should never have to hunt for the phone number.'
+    );
+  }
+
   // Accessibility floor.
   const h1s = html.match(/<h1[\s>]/gi) ?? [];
   if (h1s.length === 0) err(page, 'Page has no main heading', 'Every page needs exactly one <h1>.');

@@ -96,18 +96,145 @@
             border-top: 1px solid #eaeaea;
             padding-top: 20px;
         }
+    
+/* ---------------------------------------------------------------------
+   Site header. The Call and Text buttons sit top right on every page.
+   Self-contained: literal colours, because this page has no :root tokens.
+
+   The bar is fixed and must stay under 150px on a 360px phone, and the
+   mobile menu must sit below it, not inside it. Both are enforced by
+   tests/browser.test.mjs.
+   --------------------------------------------------------------------- */
+.sticky-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  background: #3B5166;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.top-utility-row {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%; padding: 8px 24px; box-sizing: border-box;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  background-color: rgba(0,0,0,0.2);
+}
+.utility-tagline {
+  font-size: 13px; font-weight: 500; letter-spacing: 0.5px; color: #e2e8f0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;
+}
+.sticky-ctas { margin: 0; display: flex; gap: 12px; flex-shrink: 0; }
+.btn-call, .btn-text {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 4px;
+  font-size: 13px; font-weight: 600; text-decoration: none;
+  letter-spacing: 0.02em; cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+.btn-call { background: #FFFFFF; color: #0057B8; }
+.btn-call:hover { background: #FAFAFA; color: #004A9C; }
+.btn-text { background: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.35); }
+.btn-text:hover { opacity: 0.85; background: rgba(255,255,255,0.06); }
+.icon { width: 14px; height: 14px; flex-shrink: 0; }
+.bottom-nav-row {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%; padding: 12px 24px; box-sizing: border-box;
+}
+.sticky-bar .brand {
+  color: #FFFFFF; font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+  flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  border: 0; padding: 0; margin: 0;
+}
+.sticky-bar .brand span { color: #FFFFFF; font-weight: 700; }
+.sticky-bar .brand a { color: inherit; text-decoration: none; margin: 0; font-weight: 700; }
+.sticky-nav { display: flex; gap: 22px; align-items: center; }
+.sticky-bar .sticky-nav a {
+  color: #FFFFFF; font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+  text-decoration: none; opacity: 0.85; padding-bottom: 3px; margin: 0;
+  border-bottom: 1px solid transparent; white-space: nowrap;
+  transition: opacity 0.15s, border-color 0.15s;
+}
+.sticky-bar .sticky-nav a:hover { opacity: 1; border-bottom-color: #FFFFFF; text-decoration: none; }
+
+/* Sits directly under the bar on a phone. The script sets its exact top. */
+.subnav-mobile {
+  display: none;
+  position: fixed; left: 0; right: 0; top: 0;
+  z-index: 998;
+  background: #3B5166;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding: 10px 16px; gap: 16px;
+  justify-content: flex-start; overflow-x: auto;
+  box-sizing: border-box;
+}
+.subnav-mobile a {
+  color: #FFFFFF; font-size: 12px; font-weight: 600; text-decoration: none;
+  opacity: 0.85; white-space: nowrap; flex-shrink: 0; margin: 0;
+}
+.subnav-mobile a:hover { opacity: 1; text-decoration: underline; }
+
+/* The header floats over the page. The script measures it and sets the real
+   offset; these are the no-JS fallbacks. */
+body { padding-top: 104px; }
+@media (max-width: 900px) {
+  /* The nav row would only repeat the mobile menu below it, and the brand is
+     the page you are already on. Dropping it keeps the bar under the limit. */
+  .bottom-nav-row { display: none; }
+  .subnav-mobile { display: flex; }
+  body { padding-top: 130px; }
+}
+@media (max-width: 700px) {
+  .tagline-brands { display: none; }
+  .top-utility-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .utility-tagline { width: 100%; }
+  .sticky-ctas { align-self: flex-start; }
+  body { padding-top: 160px; }
+}
+
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="Vehicles/">Vehicle Guides</a>
-        <a href="math.html">Car Math</a>
-        <a href="logistics.html">Buying Tools</a>
-        <a href="playbooks.html">Video Playbooks</a>
-        <a href="appointment.html">Book Appointment</a>
-    </nav>
+    <div class="sticky-bar">
+    <!-- Row 1: utility strip. Call and Text live here, top right. -->
+    <div class="top-utility-row">
+        <div class="utility-tagline">
+            Automotive Advisor<span class="tagline-brands"> | Chevrolet &amp; 27 Other Brands</span>
+        </div>
+        <div class="sticky-ctas">
+            <a href="tel:6098658811" class="btn-call">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                Call Terry
+            </a>
+            <a href="sms:6098658811" class="btn-text">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                Text Terry
+            </a>
+        </div>
+    </div>
+
+    <!-- Row 2: main navigation -->
+    <div class="bottom-nav-row">
+        <div class="brand"><a href="/"><span>Terry Thompson</span></a></div>
+        <div class="sticky-nav">
+            <a href="/Vehicles/">Vehicle Guides</a>
+            <a href="/math.html">Car Math</a>
+            <a href="/logistics.html">Buying Tools</a>
+            <a href="/playbooks.html">Video Playbooks</a>
+            <a href="/appointment.html">Book Appointment</a>
+        </div>
+    </div>
+</div>
+
+<!-- On a phone the nav scrolls sideways here, just below the bar -->
+    <div class="subnav-mobile">
+        <a href="/Vehicles/">Vehicle Guides</a>
+        <a href="/math.html">Car Math</a>
+        <a href="/logistics.html">Buying Tools</a>
+        <a href="/playbooks.html">Video Playbooks</a>
+        <a href="/appointment.html">Book Appointment</a>
+    </div>
 
     <h1>Unvarnished Video Playbooks: See the Real Strategy.</h1>
     
@@ -138,4 +265,40 @@
 
     <div class="cta-section">
         <h2>Ready to Verify Your Favorite Configuration?</h2>
-        <p>Don't settle for a generic internet shopping cart or standard dealer lead forms. If you have watched my playbooks and want
+        <p>Don't settle for a generic internet shopping cart or standard dealer lead forms. If you have watched my playbooks and want to check a specific truck or trim against your own numbers, call or text me directly. I will pull the real configuration and pricing and walk you through it.</p>
+        <div class="sticky-ctas" style="justify-content: center; margin-top: 22px;">
+            <a href="tel:6098658811" class="btn-call">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                Call Terry
+            </a>
+            <a href="sms:6098658811" class="btn-text">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                Text Terry
+            </a>
+        </div>
+    </div>
+
+<script>
+  /* The header is fixed, so it covers the top of the page. Measure it, park
+     the mobile menu directly underneath, and push the content down by exactly
+     the combined height, at every screen width. */
+  (function () {
+    function setHeaderOffset() {
+      var bar = document.querySelector('.sticky-bar');
+      if (!bar) return;
+      var offset = bar.offsetHeight;
+      var subnav = document.querySelector('.subnav-mobile');
+      if (subnav && window.getComputedStyle(subnav).display !== 'none') {
+        subnav.style.top = offset + 'px';
+        offset += subnav.offsetHeight;
+      }
+      document.body.style.paddingTop = offset + 'px';
+    }
+    setHeaderOffset();
+    window.addEventListener('load', setHeaderOffset);
+    window.addEventListener('resize', setHeaderOffset);
+  })();
+</script>
+
+</body>
+</html>
