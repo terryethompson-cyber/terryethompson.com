@@ -369,6 +369,38 @@ section { padding: 48px 20px; }
 * { transition: none !important; }
 html { scroll-behavior: auto; }
 }
+
+/* Every guide also exists as a Word document for the showroom. One block,
+   so there is a single place to find all of them. */
+.print-section {
+background: var(--white);
+border-top: 1px solid var(--border);
+padding: 56px 24px;
+}
+.print-list {
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+margin-top: 24px;
+}
+.print-list a {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+border: 1px solid var(--border);
+border-radius: var(--radius);
+padding: 12px 18px;
+font-size: 15px;
+font-weight: 600;
+color: var(--primary);
+text-decoration: none;
+background: var(--white);
+transition: border-color 0.2s, box-shadow 0.2s;
+}
+.print-list a:hover {
+border-color: var(--primary);
+box-shadow: 0 4px 16px rgba(0,87,184,0.12);
+}
 </style>
 </head>
 <body>
@@ -471,6 +503,22 @@ More are on the way. If the vehicle you're weighing up isn't here yet, text me a
 <span class="read-on">Text Terry →</span>
 </a>
 
+</div>
+</div>
+</section>
+
+
+<section class="print-section" id="print">
+<div class="section-inner">
+<p class="section-label">Print Versions</p>
+<h2>Every guide, as a Word document.</h2>
+<p class="section-sub">
+Same content as the pages above, laid out for paper. Print one for the showroom or email it to a customer who wants something to read over.
+</p>
+<div class="print-list">
+<a href="/Vehicles/print/2027-Chevy-Equinox-Guide.docx" download><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> 2026 &amp; 2027 Equinox</a>
+<a href="/Vehicles/print/2027-Chevy-Tahoe-Guide.docx" download><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> 2027 Tahoe</a>
+<a href="/Vehicles/print/2027-Chevy-Silverado-1500-Guide.docx" download><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> 2027 Silverado 1500</a>
 </div>
 </div>
 </section>

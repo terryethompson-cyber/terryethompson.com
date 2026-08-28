@@ -440,6 +440,39 @@ footer strong { color: rgba(255,255,255,0.7); }
 section { padding: 52px 20px; }
 .sticky-bar .brand { display: none; }
 }
+
+/* The Word versions of each guide, for printing and handing to a customer
+   on the showroom floor. Sits right under the summary so it is the first
+   thing you see after the short version, not buried at the bottom. */
+.print-bar {
+background: var(--white);
+border-bottom: 1px solid var(--border);
+padding: 20px 24px;
+}
+.print-inner {
+max-width: 1100px;
+margin: 0 auto;
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+gap: 14px;
+}
+.print-link {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+background: var(--primary);
+color: var(--white);
+text-decoration: none;
+font-size: 14px;
+font-weight: 600;
+letter-spacing: 0.02em;
+padding: 11px 20px;
+border-radius: var(--radius);
+transition: background 0.15s;
+}
+.print-link:hover { background: var(--primary-hover); }
+.print-note { font-size: 14px; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -504,6 +537,14 @@ Front-drive 2025 and 2026 Equinoxes used a CVT. The 2027 drops it. Every 2027, f
 </div>
 </div>
 
+
+<div class="print-bar">
+<div class="print-inner">
+<a class="print-link" href="/Vehicles/print/2027-Chevy-Equinox-Guide.docx" download><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+Download the print version</a>
+<span class="print-note">Word document. Print it for the showroom or email it to a customer.</span>
+</div>
+</div>
 <section>
 <div class="section-inner">
 <p class="section-label">What Changed</p>
