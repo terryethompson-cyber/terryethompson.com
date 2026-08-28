@@ -1,0 +1,47 @@
+{
+  "title": "2026 & 2027 Chevrolet Equinox",
+  "heroLine": "The CVT is gone. That’s the headline.",
+  "url": "terryethompson.com/Vehicles/2027-chevy-equinox.html",
+  "shortVersion": "Front-drive 2025 and 2026 Equinoxes used a CVT. The 2027 drops it. Every 2027, front-drive or all-wheel drive, now gets the 8-speed automatic. Towing on front-drive models jumps from 800 pounds to 1,500. Everything else carries over: same 1.5-liter turbo, same three trims, same interior. 2027s started arriving at dealers in July.",
+  "blocks": [
+    { "type": "heading", "label": "What Changed", "heading": "2027 versus 2026, in plain terms." },
+    { "type": "bullets", "items": [
+      ["The CVT is retired.", "All-wheel-drive Equinoxes already had the 8-speed automatic. Now front-drive gets it too. The front-drive Equinox finally shifts like a normal automatic."],
+      ["Front-drive towing nearly doubles.", "800 pounds becomes 1,500. All-wheel drive was already rated at 1,500."],
+      ["Fuel economy gives up about a mile per gallon in town.", "Front-drive still lands at 27 combined, all-wheel drive at 26. Highway is unchanged."],
+      ["Cacti Green is dead.", "Autumn Harvest Metallic replaces it, a warm bronze-gold. Eight colors total. Polar White Tricoat runs $995, Radiant Red Tintcoat $495, everything else is no charge."],
+      ["The factory trailering package came off the order guide.", "Chevy did not say why. The 1,500-pound rating still stands. If you plan to pull something, ask me first."],
+      ["Connected Cameras joins the Safety and Technology package.", "Small addition, mostly of interest if you park on a city street."]
+    ]},
+    { "type": "heading", "label": "The Lineup and What It Costs", "heading": "Three trims. One engine. No bad choice." },
+    { "type": "trims", "priceHeads": ["FWD", "AWD"], "rows": [
+      { "name": "LT", "tag": "Best value", "price1": "$30,995", "price2": "$32,995",
+        "desc": "Heated seats, heated steering wheel, remote start, adaptive cruise, 11.3-inch screen, 11-inch driver display. All standard. Not a stripped car. For most families this is the one, and the money you save covers all-wheel drive with room left over." },
+      { "name": "RS", "tag": "Sport look", "price1": "$35,895", "price2": "$37,895",
+        "desc": "Blacked-out grille and badges, 19-inch wheels, the biggest in the lineup. Adds wireless charging, dual-zone climate, rain-sensing wipers. Opens the door to the 360-degree camera and panoramic sunroof. You are paying for looks and conveniences, not more power." },
+      { "name": "ACTIV", "tag": "Winter pick", "price1": "$35,895", "price2": "$37,895",
+        "desc": "All-terrain tires from the factory and its own suspension tune. Evotex and sueded microfiber seats. Same price as RS. If your driveway is long or your road gets plowed last, this is the trim I point Buffalo customers toward." }
+    ]},
+    { "type": "note", "text": "2027 pricing, destination charge of $1,995 included. All-wheel drive is a $2,000 option on every trim. Nothing comes with it standard. The 2026 was $200 less on LT and $300 less on RS and ACTIV." },
+    { "type": "specs", "cards": [
+      { "big": "175 HP", "small": "1.5L turbo four. 184 lb-ft FWD, 203 lb-ft AWD. Only engine offered." },
+      { "big": "8-SPEED", "small": "Automatic on every 2027, front-drive included. Replaces the CVT." },
+      { "big": "1,500 LBS", "small": "Towing, now the same front-drive or all-wheel drive." },
+      { "big": "27 MPG", "small": "Combined front-drive. 26 combined with all-wheel drive." }
+    ]},
+    { "type": "heading", "label": "My Honest Take", "heading": "Which year you buy depends on one thing.",
+      "sub": "Not the trim. Not the color. Whether you are getting all-wheel drive. That is the whole decision, and almost nobody frames it that way for you." },
+    { "type": "recs", "cards": [
+      { "h": "Buying front-wheel drive", "body": "Get the 2027. This is the year the front-drive Equinox got the good transmission. A leftover 2026 front-drive car still has the CVT, and no discount fixes how that drives over four or five years. Pay the extra $200 and be happier." },
+      { "h": "Buying all-wheel drive", "body": "Look hard at a leftover 2026. The AWD car already had the 8-speed. Same engine, same interior, same tow rating. You are giving up a new paint color and about a mile per gallon of nothing. Take the discount instead." },
+      { "h": "Cross-shopping RAV4 or CR-V", "body": "Be straight with yourself about the hybrid question. Toyota and Honda will beat the Equinox on fuel, full stop. Chevy has no hybrid Equinox. What you get back is a lower price, more standard equipment for the money, and a car you can actually find without a wait." }
+    ]},
+    { "type": "heading", "label": "Availability", "heading": "Both model years are on the lot right now." },
+    { "type": "timeline", "cards": [
+      { "k": "Order Banks", "v": "Open since April 16", "note": "Factory orders are running normally. A build-to-order car takes longer than pulling one off the lot, but you get exactly the color and equipment you want." },
+      { "k": "Production Begins", "v": "Week of June 1, 2026", "note": "Built at San Luis Potosi in Mexico. GM moves Equinox production to Fairfax Assembly in Kansas around mid-2027, so this is the last stretch of Mexico-built cars." },
+      { "k": "Dealer Arrivals", "v": "Since late June", "note": "First units landed in late June and early July. Call me for what is on the ground this week versus what has to be ordered." }
+    ]}
+  ],
+  "disclaimer": "Everything here covers the gas Equinox. The Equinox EV is a different vehicle on a different platform with different pricing, and the two get confused constantly. Ask me if you want that one instead. Pricing, trim content, colors and EPA figures reflect Chevrolet’s published information and order guide reporting as of August 2026, and include the $1,995 destination charge. Fuel economy sources differ by a mile per gallon on the city rating, so treat the combined figures as the reliable ones. Equipment availability changes during a model year, especially the trailering package, which came off the 2027 configurator without explanation. Confirm the build with me before you order. Not every trim, color or option is on the ground at any given time."
+}

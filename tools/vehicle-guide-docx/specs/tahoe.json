@@ -1,0 +1,57 @@
+{
+  "title": "2027 Chevrolet Tahoe",
+  "heroLine": "Trims, timing, and the truth.",
+  "url": "terryethompson.com/Vehicles/2027-chevy-tahoe.html",
+  "shortVersion": "The 2027 Tahoe carries over its 2025-refreshed look, interior, and engines, so it’s a safe, well-proven buy. Order banks are open now, production begins September 8, 2026, and dealer arrivals are expected late 2026 into early 2027.",
+  "blocks": [
+    { "type": "heading", "label": "What Changed", "heading": "What’s new for 2027.",
+      "sub": "This is a refinement year, not a redesign. A handful of updates matter, especially if you drive through Buffalo winters." },
+    { "type": "bullets", "items": [
+      ["Four-wheel drive is now standard on the High Country.", "You can no longer order it in rear-wheel drive only."],
+      ["RST gets heated and ventilated front seats standard,", "plus power lumbar support for driver and passenger. Neither was even available on this trim last year."],
+      ["Super Cruise can now be paired with the Duramax diesel on High Country.", "That’s a first, and it matters if you want hands-free highway driving with the best fuel economy in the lineup."],
+      ["A new White Sands exterior color joins the lineup.", "One more paint choice, no other change."],
+      ["The LS Custom Edition appearance package is discontinued,", "making the 2026 its only production year."]
+    ]},
+    { "type": "heading", "label": "The Lineup", "heading": "Six trims. Pick by how you drive.",
+      "sub": "Don’t start with the price. Start with what you actually need the vehicle to do, then find the trim that does it." },
+    { "type": "trims", "rows": [
+      { "name": "LS", "tag": "Entry", "desc": "The value starting point. Full-size capability and the full safety tech suite at the most accessible price. Available nine-passenger seating." },
+      { "name": "LT", "tag": "Best value", "desc": "The sweet spot for most families. Adds heated seats, power liftgate, available Super Cruise, available captain’s chairs, and available Bose audio." },
+      { "name": "RST", "tag": "Styling", "desc": "Blacked-out, monochrome street look. Now standard with heated and ventilated front seats. A 6.2L Performance Edition is available." },
+      { "name": "Z71", "tag": "Winter pick", "desc": "Built for snow and rough roads. Standard 4WD with a two-speed transfer case and 4-Low, all-terrain tires, skid plate, and a better approach angle." },
+      { "name": "Premier", "tag": "Comfort", "desc": "Upscale family trim with standard captain’s chairs and premium materials. The Advanced Technology Package is newly available here for 2027." },
+      { "name": "High Country", "tag": "Flagship", "desc": "Standard 420-hp 6.2L V8, now standard 4WD, genuine wood trim, perforated leather, and the full technology suite." }
+    ]},
+    { "type": "heading", "label": "Buffalo Reality Check", "heading": "How it handles a Western New York winter." },
+    { "type": "paras", "items": [
+      "Every 2027 Tahoe trim offers four-wheel drive, and it’s standard on both the Z71 and the High Country. GM’s AutoTrac system includes an Auto 4WD mode that sends power where it’s needed automatically, which is what you want on a slushy on-ramp rather than something you have to remember to switch on.",
+      "The Z71 goes a step further with a two-speed transfer case and 4-Low. That’s genuinely useful for unplowed roads, steep driveways, and boat ramps. For most commuters, the single-speed AutoTrac setup on an LT or Premier is plenty."
+    ]},
+    { "type": "specs", "cards": [
+      { "big": "355 hp", "small": "5.3L V8. The standard choice. Up to roughly 8,400 lbs of towing when properly equipped." },
+      { "big": "420 hp", "small": "6.2L V8. Standard on High Country, optional elsewhere. Maximum power, higher fuel bill." },
+      { "big": "305 hp", "small": "3.0L Duramax diesel. 495 lb-ft and roughly 500-plus miles of range. Best for towing and long hauls." }
+    ]},
+    { "type": "heading", "label": "Availability", "heading": "When you can actually get one.",
+      "sub": "Because this is a carryover rather than a redesign, early-build supply tends to be tighter. If you want specific options, ordering beats waiting for one to land on the lot." },
+    { "type": "timeline", "cards": [
+      { "k": "Order Banks", "v": "Open now", "note": "Opened July 9, 2026. You can spec and order today." },
+      { "k": "Production Begins", "v": "September 8, 2026", "note": "Built at GM’s Arlington, Texas plant." },
+      { "k": "Dealer Arrivals", "v": "Late 2026 to early 2027", "note": "Chevrolet has not published an official on-sale date yet." }
+    ]},
+    { "type": "heading", "label": "Pricing", "heading": "What it will cost." },
+    { "type": "paras", "items": [
+      "Chevrolet has not released official 2027 pricing yet. For reference, 2026 pricing runs from the mid-$60,000s for an LS to the mid-$80,000s for a High Country, plus destination. A modest increase for 2027 would be typical.",
+      "I’ll have exact numbers the moment Chevrolet publishes them. In the meantime, I’m happy to run real payment scenarios on a comparable 2026 so you know what range you’re working with before you commit to anything."
+    ]},
+    { "type": "heading", "label": "My Honest Take", "heading": "What I’d actually tell you to do.",
+      "sub": "Three different situations, three different answers. Find the one that sounds like you." },
+    { "type": "recs", "cards": [
+      { "h": "You want a 2027 and winter matters", "body": "Order now while banks are open. Look at LT with 4WD for value, Z71 if you want the two-speed transfer case and 4-Low, or High Country if you want the 6.2L V8 with 4WD now standard." },
+      { "h": "Price is your priority", "body": "Seriously consider a remaining 2026. It’s mechanically identical in almost every way, pricing is already published, and it may carry incentives as dealers make room for 2027 inventory." },
+      { "h": "You want diesel plus hands-free driving", "body": "The 2027 is worth waiting for. Pairing Super Cruise with the Duramax on High Country wasn’t possible before this model year, and it’s the single best reason to choose 2027 over 2026." }
+    ]}
+  ],
+  "disclaimer": "Model year details reflect Chevrolet order guides and industry reporting as of August 2026. The 2027 Tahoe has no formal press launch because it is a carryover model year, so specifications, packaging, and the production schedule can change before vehicles reach dealers. Pricing shown is 2026 reference pricing; official 2027 MSRP has not been published. Always confirm final specifications and pricing on the window sticker."
+}
