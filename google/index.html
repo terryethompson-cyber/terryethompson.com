@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Found Terry Thompson | West Herr Chevrolet of Williamsville</title>
+    <meta name="description" content="You found me on Google — here is the fastest way to reach me. Terry Thompson, Automotive Advisor at West Herr Chevrolet of Williamsville. Call, text, or book a time. Straight answers, no pressure.">
+    <link rel="canonical" href="https://terryethompson.com/google/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <!-- How this page looks when the link is texted or shared -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Terry Thompson">
+    <meta property="og:url" content="https://terryethompson.com/google/">
+    <meta property="og:title" content="Terry Thompson — West Herr Chevrolet of Williamsville">
+    <meta property="og:description" content="You found me on Google — here is the fastest way to reach me. Automotive Advisor at West Herr Chevrolet of Williamsville. Call, text, or book a time. Straight answers, no pressure.">
+    <meta property="og:image" content="https://terryethompson.com/terry-hero.jpg">
+    <meta property="og:image:alt" content="Terry Thompson, Certified Sales Consultant at West Herr Chevrolet of Williamsville">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Terry Thompson — West Herr Chevrolet of Williamsville">
+    <meta name="twitter:description" content="You found me on Google — here is the fastest way to reach me. Automotive Advisor at West Herr Chevrolet of Williamsville. Call, text, or book a time. Straight answers, no pressure.">
+    <meta name="twitter:image" content="https://terryethompson.com/terry-hero.jpg">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            /* Brand system — same tokens as the home page */
+            --primary: #0057B8;
+            --primary-hover: #004A9C;
+            --dark: #3B5166;
+            --dark-2: #2C3E50;
+            --light: #FAFAFA;
+            --white: #FFFFFF;
+            --text: #2C3E50;
+            --muted: #6E7C87;
+            --border: #D6DBDF;
+            --radius: 4px;
+            --radius-lg: 10px;
+        }
+
+        body {
+            font-family: 'Calibri', 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--white);
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .inner { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+        .section-label {
+            font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--primary); margin-bottom: 10px;
+        }
+
+        /* ─── Who you just found ─── */
+        .intro { background: var(--dark); color: var(--white); padding: 42px 0 38px; }
+        .intro .inner { display: flex; align-items: center; gap: 28px; }
+        .intro img {
+            width: 128px; height: 128px; flex-shrink: 0;
+            border-radius: 50%; object-fit: cover; object-position: center 18%;
+            border: 3px solid rgba(255,255,255,0.85);
+        }
+        .intro .section-label { color: #9FC4EE; }
+        .intro h1 {
+            font-size: 2.05rem; line-height: 1.15; font-weight: 700;
+            color: var(--white); margin-bottom: 12px;
+        }
+        .intro p { color: #DCE4EC; font-size: 1.05rem; }
+        .intro p .role { color: var(--white); font-weight: 600; }
+
+        /* ─── The three things they came to do ─── */
+        .actions { padding: 28px 0 6px; }
+        .action-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .action {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 4px; text-align: center; text-decoration: none;
+            padding: 18px 12px; border-radius: var(--radius-lg);
+            border: 1px solid var(--border); background: var(--white);
+            transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+        }
+        .action:hover { border-color: var(--primary); box-shadow: 0 3px 12px rgba(0,87,184,0.12); }
+        .action:active { transform: translateY(1px); }
+        .action.primary { background: var(--primary); border-color: var(--primary); }
+        .action.primary:hover { background: var(--primary-hover); }
+        .action .icon-lg { width: 22px; height: 22px; color: var(--primary); margin-bottom: 4px; }
+        .action.primary .icon-lg { color: var(--white); }
+        .action b { font-size: 16px; font-weight: 700; color: var(--text); }
+        .action span { font-size: 13px; color: var(--muted); }
+        .action.primary b, .action.primary span { color: var(--white); }
+        .action.primary span { opacity: 0.85; }
+
+        /* ─── Credentials ─── */
+        .trust { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+                 background: var(--light); margin-top: 30px; padding: 16px 0; }
+        .trust .inner { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 28px; }
+        .trust div { font-size: 13px; color: var(--muted); font-weight: 600; }
+
+        /* ─── Sections ─── */
+        section { padding: 44px 0; }
+        section h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; }
+        .section-sub { color: var(--muted); margin-bottom: 26px; }
+
+        /* Paste a vehicle link */
+        .hook { background: var(--light); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .hook-row { display: flex; gap: 10px; }
+        .hook-input {
+            flex: 1; min-width: 0; padding: 14px 16px; font-size: 15px;
+            font-family: inherit; color: var(--text);
+            border: 1px solid var(--border); border-radius: var(--radius); background: var(--white);
+        }
+        .hook-input:focus { outline: 2px solid var(--primary); outline-offset: -1px; }
+        .hook-send {
+            flex-shrink: 0; display: inline-flex; align-items: center;
+            padding: 14px 22px; border-radius: var(--radius);
+            background: var(--primary); color: var(--white);
+            font-size: 15px; font-weight: 700; text-decoration: none;
+            transition: background 0.15s;
+        }
+        .hook-send:hover { background: var(--primary-hover); }
+        .hook-note { font-size: 13px; color: var(--muted); margin-top: 12px; }
+
+        /* Situation cards */
+        .sit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .sit-card {
+            display: block; text-decoration: none;
+            border: 1px solid var(--border); border-radius: var(--radius-lg);
+            padding: 22px; background: var(--white);
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+        .sit-card:hover { border-color: var(--primary); box-shadow: 0 3px 12px rgba(0,87,184,0.10); }
+        .sit-icon { font-size: 22px; display: block; margin-bottom: 10px; }
+        .sit-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+        .sit-card p { font-size: 14px; color: var(--muted); line-height: 1.55; }
+        .sit-arrow { display: block; margin-top: 12px; font-size: 14px; font-weight: 700; color: var(--primary); }
+
+        /* Read-first links */
+        .read-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .read-card {
+            display: block; text-decoration: none; padding: 20px;
+            border: 1px solid var(--border); border-radius: var(--radius-lg);
+            transition: border-color 0.15s, background 0.15s;
+        }
+        .read-card:hover { border-color: var(--primary); background: var(--light); }
+        .read-card h3 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+        .read-card p { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+        /* Review nudge */
+        .review-note {
+            background: var(--light); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 20px 24px;
+            display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+        }
+        .review-note p { font-size: 15px; color: var(--muted); flex: 1 1 320px; }
+        .review-note a {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 11px 18px; border-radius: var(--radius);
+            border: 1px solid var(--primary); color: var(--primary);
+            background: var(--white); font-weight: 700; font-size: 14px; text-decoration: none;
+            transition: background 0.15s;
+        }
+        .review-note a:hover { background: #EDF3FA; }
+        .google-g { width: 18px; height: 18px; flex-shrink: 0; }
+
+        footer {
+            background: var(--dark-2); color: #C9D3DC;
+            padding: 34px 0; font-size: 14px; text-align: center;
+        }
+        footer a { color: var(--white); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        footer .small { font-size: 12px; color: #93A2AF; margin-top: 10px; }
+
+        .footer-disclaimer {
+            font-size: 11px; line-height: 1.4; color: #666666;
+            padding: 22px 0 40px;
+        }
+
+        @media (max-width: 760px) {
+            .intro { padding: 32px 0 30px; }
+            .intro .inner { flex-direction: column; text-align: center; gap: 18px; }
+            .intro h1 { font-size: 1.7rem; }
+            .action-grid { grid-template-columns: 1fr; }
+            .sit-grid, .read-grid { grid-template-columns: 1fr; }
+            .hook-row { flex-direction: column; }
+            .hook-send { justify-content: center; }
+            section { padding: 34px 0; }
+        }
+
+/* ---------------------------------------------------------------------
+   Site header. The Call and Text buttons sit top right on every page.
+   Self-contained: literal colours, because this page has no :root tokens.
+
+   The bar is fixed and must stay under 150px on a 360px phone, and the
+   mobile menu must sit below it, not inside it. Both are enforced by
+   tests/browser.test.mjs.
+   --------------------------------------------------------------------- */
+.sticky-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  background: #3B5166;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.top-utility-row {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%; padding: 8px 24px; box-sizing: border-box;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  background-color: rgba(0,0,0,0.2);
+}
+.utility-tagline {
+  font-size: 13px; font-weight: 500; letter-spacing: 0.5px; color: #e2e8f0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;
+}
+.sticky-ctas { margin: 0; display: flex; gap: 12px; flex-shrink: 0; }
+.btn-call, .btn-text {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 4px;
+  font-size: 13px; font-weight: 600; text-decoration: none;
+  letter-spacing: 0.02em; cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+.btn-call { background: #FFFFFF; color: #0057B8; }
+.btn-call:hover { background: #FAFAFA; color: #004A9C; }
+.btn-text { background: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.35); }
+.btn-text:hover { opacity: 0.85; background: rgba(255,255,255,0.06); }
+.icon { width: 14px; height: 14px; flex-shrink: 0; }
+.bottom-nav-row {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%; padding: 12px 24px; box-sizing: border-box;
+}
+.sticky-bar .brand {
+  color: #FFFFFF; font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+  flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  border: 0; padding: 0; margin: 0;
+}
+.sticky-bar .brand span { color: #FFFFFF; font-weight: 700; }
+.sticky-bar .brand a { color: inherit; text-decoration: none; margin: 0; font-weight: 700; }
+.sticky-nav { display: flex; gap: 22px; align-items: center; }
+.sticky-bar .sticky-nav a {
+  color: #FFFFFF; font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+  text-decoration: none; opacity: 0.85; padding-bottom: 3px; margin: 0;
+  border-bottom: 1px solid transparent; white-space: nowrap;
+  transition: opacity 0.15s, border-color 0.15s;
+}
+.sticky-bar .sticky-nav a:hover { opacity: 1; border-bottom-color: #FFFFFF; text-decoration: none; }
+
+/* Sits directly under the bar on a phone. The script sets its exact top. */
+.subnav-mobile {
+  display: none;
+  position: fixed; left: 0; right: 0; top: 0;
+  z-index: 998;
+  background: #3B5166;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding: 10px 16px; gap: 16px;
+  justify-content: flex-start; overflow-x: auto;
+  box-sizing: border-box;
+}
+.subnav-mobile a {
+  color: #FFFFFF; font-size: 12px; font-weight: 600; text-decoration: none;
+  opacity: 0.85; white-space: nowrap; flex-shrink: 0; margin: 0;
+}
+.subnav-mobile a:hover { opacity: 1; text-decoration: underline; }
+
+/* The header floats over the page. The script measures it and sets the real
+   offset; these are the no-JS fallbacks. */
+body { padding-top: 104px; }
+@media (max-width: 900px) {
+  /* The nav row would only repeat the mobile menu below it, and the brand is
+     the page you are already on. Dropping it keeps the bar under the limit. */
+  .bottom-nav-row { display: none; }
+  .subnav-mobile { display: flex; }
+  body { padding-top: 130px; }
+}
+@media (max-width: 700px) {
+  .tagline-brands { display: none; }
+  .top-utility-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .utility-tagline { width: 100%; }
+  .sticky-ctas { align-self: flex-start; }
+  body { padding-top: 160px; }
+}
+
+    </style>
+</head>
+<body>
+
+<div class="sticky-bar">
+    <!-- Row 1: utility strip. Call and Text live here, top right. -->
+    <div class="top-utility-row">
+        <div class="utility-tagline">
+            Automotive Advisor<span class="tagline-brands"> | Chevrolet &amp; 27 Other Brands</span>
+        </div>
+        <div class="sticky-ctas">
+            <a href="tel:7169324793" class="btn-call">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                Call Terry
+            </a>
+            <a href="sms:7169324793" class="btn-text">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                Text Terry
+            </a>
+        </div>
+    </div>
+
+    <!-- Row 2: main navigation -->
+    <div class="bottom-nav-row">
+        <div class="brand"><a href="/"><span>Terry Thompson</span></a></div>
+        <div class="sticky-nav">
+            <a href="/Vehicles/">Vehicle Guides</a>
+            <a href="/math.html">Car Math</a>
+            <a href="/logistics.html">Buying Tools</a>
+            <a href="/playbooks.html">Video Playbooks</a>
+            <a href="/appointment.html">Book Appointment</a>
+        </div>
+    </div>
+</div>
+
+<!-- On a phone the nav scrolls sideways here, just below the bar -->
+<div class="subnav-mobile">
+    <a href="/Vehicles/">Vehicle Guides</a>
+    <a href="/math.html">Car Math</a>
+    <a href="/logistics.html">Buying Tools</a>
+    <a href="/playbooks.html">Video Playbooks</a>
+    <a href="/appointment.html">Book Appointment</a>
+</div>
+
+<!-- Someone arriving from the Google listing needs one thing first: proof they
+     are in the right place, and the person's actual phone number. -->
+<div class="intro">
+    <div class="inner">
+        <img src="/terry-hero.jpg" alt="Terry Thompson, Certified Sales Consultant at West Herr Chevrolet of Williamsville" width="128" height="128" loading="eager">
+        <div>
+            <p class="section-label">You found me on Google</p>
+            <h1>Hi — I'm Terry Thompson.</h1>
+            <p>
+                <span class="role">Automotive Advisor at West Herr Chevrolet of Williamsville.</span>
+                Author of <em>First Principles of Car Buying</em>. I help Western New York families buy
+                and finance the right vehicle — safely, affordably, and without the runaround.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="actions">
+    <div class="inner">
+        <div class="action-grid">
+            <a href="tel:7169324793" class="action primary">
+                <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <b>Call 716-932-4793</b>
+                <span>Straight to my cell</span>
+            </a>
+            <a href="sms:7169324793" class="action">
+                <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                <b>Text me</b>
+                <span>No bots — I answer</span>
+            </a>
+            <a href="/appointment.html" class="action">
+                <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>
+                <b>Book a time</b>
+                <span>Pick a slot on my calendar</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="trust">
+    <div class="inner">
+        <div>West Herr is New York State's largest automotive group</div>
+        <div>GM Mark of Excellence Award</div>
+        <div>30 Years in Tech</div>
+    </div>
+</div>
+
+<div class="hook">
+    <section>
+        <div class="inner">
+            <p class="section-label">The easiest way to start</p>
+            <h2>Already looking at a vehicle? Send me the link.</h2>
+            <p class="section-sub">
+                Chevy, GMC, Toyota, Honda, Acura — any of our 27 brands. No obligation. I'll tell you
+                exactly what it pencils out to and what you should ask for.
+            </p>
+            <div class="hook-row">
+                <input class="hook-input" type="url" inputmode="url" enterkeyhint="send"
+                       autocomplete="off" autocapitalize="off" spellcheck="false"
+                       aria-label="Paste the link to the vehicle you are looking at"
+                       placeholder="Paste the vehicle link here...">
+                <a href="sms:7169324793" class="hook-send">Text It to Terry →</a>
+            </div>
+            <p class="hook-note">Or text the link directly to Terry · No bots. Terry responds personally.</p>
+        </div>
+    </section>
+</div>
+
+<section>
+    <div class="inner">
+        <p class="section-label">Where are you right now?</p>
+        <h2>Tell me your situation.</h2>
+        <p class="section-sub">Tap the one that fits. I'll know exactly how to help you from there.</p>
+        <div class="sit-grid">
+            <a href="tel:7169324793" class="sit-card">
+                <span class="sit-icon">🚗</span>
+                <h3>I'm ready to buy — within the next 30 days</h3>
+                <p>You know what you want, or you're close. Let's get you into the right vehicle at the right number, fast.</p>
+                <span class="sit-arrow">Call Terry now →</span>
+            </a>
+            <a href="sms:7169324793" class="sit-card">
+                <span class="sit-icon">🔍</span>
+                <h3>I'm researching — not ready yet, but looking</h3>
+                <p>No pressure here. Ask me anything — payment ranges, trade-in values, model comparisons. I'll give you straight answers.</p>
+                <span class="sit-arrow">Text Terry a question →</span>
+            </a>
+            <a href="sms:7169324793" class="sit-card">
+                <span class="sit-icon">💰</span>
+                <h3>I want to know what my trade-in is worth</h3>
+                <p>Most people are surprised, sometimes pleasantly. Text me your year, make, model, and mileage. I'll get you a real number.</p>
+                <span class="sit-arrow">Text Terry your vehicle info →</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--light); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="inner">
+        <p class="section-label">Do your homework first</p>
+        <h2>Everything I'd tell you at my desk, already written down.</h2>
+        <p class="section-sub">No form to fill in. Nothing gets emailed to you. Just read it.</p>
+        <div class="read-grid">
+            <a href="/Vehicles/" class="read-card">
+                <h3>Vehicle Guides →</h3>
+                <p>What actually changed on the 2027 Silverado, Equinox and Tahoe — trims, packages, and which one fits a Buffalo winter.</p>
+            </a>
+            <a href="/math.html" class="read-card">
+                <h3>Car Math →</h3>
+                <p>How payments, money factor, residuals and rebates really work, so no number on the sheet is a surprise.</p>
+            </a>
+            <a href="/logistics.html" class="read-card">
+                <h3>Buying Tools →</h3>
+                <p>Trade equity, the New York sales tax advantage, plate transfers, and exactly what to bring on delivery day.</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="inner">
+        <div class="review-note">
+            <p><strong>Already worked with me?</strong> A review on Google is the single biggest thing you can do to help the next family find their way to my desk instead of a lead form.</p>
+            <a href="https://g.page/r/CayEK_fSlMG9EBM/review" target="_blank" rel="noopener">
+                <svg class="google-g" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                </svg>
+                Leave a Google review
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="inner">
+        <p>
+            <strong style="color:#FFFFFF;">Terry Thompson</strong> · West Herr Chevrolet of Williamsville · Buffalo, New York<br>
+            <a href="mailto:terry.thompson@westherr.com">terry.thompson@westherr.com</a> ·
+            <a href="tel:7169324793">716-932-4793</a> ·
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=West+Herr+Chevrolet+of+Williamsville" target="_blank" rel="noopener">Directions</a>
+        </p>
+        <p class="small">Walk in and ask for me by name — skip the greeter desk.</p>
+    </div>
+</footer>
+
+<div class="inner">
+    <div class="footer-disclaimer">
+        While I make every reasonable effort to provide accurate information on this site, Terry is not responsible for any errors or omissions on this site and the actual description and condition of the vehicle must be verified by you at the time of purchase. All prices do not include applicable taxes, including sales, use and tire taxes, finance charges, title, registration and dealer document/service fees. Vehicle availability, pricing, and description are subject to change without prior notice. All finance and lease offers are on approved credit. See dealer for complete details.
+    </div>
+</div>
+
+<script>
+  /* The header is fixed, so it covers the top of the page. Measure it, park
+     the mobile menu directly underneath, and push the content down by exactly
+     the combined height, at every screen width. */
+  (function () {
+    function setHeaderOffset() {
+      var bar = document.querySelector('.sticky-bar');
+      if (!bar) return;
+      var offset = bar.offsetHeight;
+      var subnav = document.querySelector('.subnav-mobile');
+      if (subnav && window.getComputedStyle(subnav).display !== 'none') {
+        subnav.style.top = offset + 'px';
+        offset += subnav.offsetHeight;
+      }
+      document.body.style.paddingTop = offset + 'px';
+    }
+    setHeaderOffset();
+    window.addEventListener('load', setHeaderOffset);
+    window.addEventListener('resize', setHeaderOffset);
+  })();
+
+  /**
+   * Carry the pasted vehicle link into the text message.
+   *
+   * Same behaviour as the home page. Without this the send button is a plain
+   * "sms:" link, so whatever the customer pasted is dropped and their
+   * messaging app opens empty. They assume it sent; Terry never hears from
+   * them.
+   *
+   * Note the "?&" before body: iOS wants "sms:number&body=", Android wants
+   * "sms:number?body=". "?&" is the one form both accept.
+   */
+  (function () {
+    var PHONE = '7169324793';
+    var input = document.querySelector('.hook-input');
+    var send = document.querySelector('.hook-send');
+    if (!input || !send) return;
+
+    function messageFor(link) {
+      return "Hi Terry - I'm looking at this vehicle: " + link +
+             ' . What does it pencil out to?';
+    }
+
+    function updateSendLink() {
+      var link = input.value.trim();
+      // With nothing pasted, leave the plain link so the app still opens and
+      // they can type freely.
+      send.href = link
+        ? 'sms:' + PHONE + '?&body=' + encodeURIComponent(messageFor(link))
+        : 'sms:' + PHONE;
+    }
+
+    input.addEventListener('input', updateSendLink);
+    input.addEventListener('change', updateSendLink);
+
+    // Enter should send, not just sit there.
+    input.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        updateSendLink();
+        send.click();
+      }
+    });
+
+    updateSendLink();
+  })();
+</script>
+
+</body>
+</html>
