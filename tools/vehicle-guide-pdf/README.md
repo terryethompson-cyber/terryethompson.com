@@ -25,6 +25,11 @@ to: `2027-chevy-tahoe.html` becomes `2027-Chevy-Tahoe-Guide.pdf`.
 
 Re-run it after editing a guide page, or the handout will be a version behind.
 
+A handout has to be something you can hand across a desk, so the budget is
+three sheets. The builder prints the page count for each guide and exits
+non-zero if one goes over, rather than letting it be discovered in the
+showroom with the paper already printed.
+
 ## What changes for paper
 
 Deliberately little. Everything the page already does is what we want printed.
@@ -38,6 +43,9 @@ The rules that get added are only the things paper cannot do:
 | `break-inside: avoid` on cards | Never split a trim or spec card across a page |
 | Zero side margins | Keeps layout above the 768px mobile breakpoint, and lets the dark hero bleed to the paper edge the way it does on screen |
 | Footer with the phone number and page number | Paper has no address bar |
+| Trim and engine cards go 4-up | The print canvas is wider than the web column, so the same cards sit in fewer rows |
+| Printed at 0.70 scale | Lands every guide on three sheets at roughly 11pt body text |
+| Hide the availability timeline | Order banks, production start and dealer arrivals move every few weeks. Paper cannot be updated, and stale dates in a customer's hand are worse than none, so the timeline stays on the web page |
 
 ## Rendering
 

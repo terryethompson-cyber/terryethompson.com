@@ -13,7 +13,7 @@
  * Only the parts that make no sense on paper are stripped: the fixed
  * navigation bar and the button that offers this very PDF.
  */
-import { readdirSync, mkdirSync } from 'node:fs';
+import { readdirSync, mkdirSync, readFileSync } from 'node:fs';
 import { resolve, dirname, basename, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { chromium } from 'playwright';
@@ -45,12 +45,28 @@ const PRINT_CSS = `
   /* A button offering this very PDF, inside this very PDF. */
   .print-bar { display: none !important; }
 
-  /* Paper is shorter than a scroll. Tighten the generous web rhythm without
-     touching the type or the colour. */
-  section { padding-top: 34px !important; padding-bottom: 34px !important; }
-  .guide-hero { padding: 44px 24px 38px !important; }
-  .final-cta { padding: 40px 24px !important; }
-  .summary-bar { padding: 26px 24px !important; }
+  /* Order banks, production start, dealer arrivals. These dates move every
+     few weeks. A printed sheet cannot be updated, and stale dates in a
+     customer's hand are worse than no dates, so the timeline stays on the
+     web page only. This is also what buys the third page. */
+  .timeline-section { display: none !important; }
+
+  /* Paper is shorter than a scroll. Tighten the web rhythm without touching
+     the type or the colour. */
+  section { padding-top: 20px !important; padding-bottom: 20px !important; }
+  .guide-hero { padding: 30px 24px 24px !important; }
+  .summary-bar { padding: 18px 24px !important; }
+  .final-cta { padding: 26px 24px !important; }
+  .disclaimer { padding: 16px 24px !important; }
+  .section-sub { margin-bottom: 20px !important; }
+  /* The footer on every sheet already says how to reach Terry. */
+  .final-cta .section-sub { display: none !important; }
+  .final-option { padding: 16px 14px !important; }
+
+  /* The print canvas is wider than the web column, so the same cards sit in
+     fewer rows. Same cards, same styling, fewer sheets. */
+  .trim-grid { grid-template-columns: repeat(4, 1fr) !important; }
+  .engine-grid { grid-template-columns: repeat(4, 1fr) !important; }
 
   /* Never split a card across a page break. */
   .trim-card, .timeline-card, .engine-card, .rec-card, .final-option,
@@ -59,6 +75,12 @@ const PRINT_CSS = `
   .section-label { break-after: avoid; }
   .summary-bar, .disclaimer, footer { break-inside: avoid; }
 `;
+
+/* A showroom handout has to be something you can hand across a desk.
+   0.70 prints the page at about 11pt body text and lands every guide on
+   three sheets. Raising it pushes past three; lowering it gets hard to read. */
+const SCALE = 0.70;
+const MAX_PAGES = 3;
 
 const FOOTER = `
   <div style="width:100%;font-family:Calibri,Segoe UI,Helvetica,Arial,sans-serif;
@@ -78,6 +100,7 @@ const targets = process.argv.slice(2).length
 
 mkdirSync(OUT, { recursive: true });
 
+let overBudget = false;
 const browser = await chromium.launch();
 for (const html of targets) {
   const page = await browser.newPage();
@@ -92,12 +115,23 @@ for (const html of targets) {
     printBackground: true,
     // Zero side margins keep the layout above the 768px mobile breakpoint and
     // let the dark hero bleed to the paper edge, the way it does on screen.
+    scale: SCALE,
     margin: { top: '0', right: '0', bottom: '0.42in', left: '0' },
     displayHeaderFooter: true,
     headerTemplate: '<span></span>',
     footerTemplate: FOOTER,
   });
   await page.close();
-  console.log('wrote ' + out.replace(ROOT + '/', ''));
+
+  // A guide that grows past the budget should be caught here, not in the
+  // showroom with a stack of paper already printed.
+  const pages = (readFileSync(out).toString('latin1')
+    .match(/\/Type\s*\/Page[^s]/g) || []).length;
+  console.log(`wrote ${out.replace(ROOT + '/', '')}  (${pages} pages)`);
+  if (pages > MAX_PAGES) {
+    console.error(`  WARNING: over the ${MAX_PAGES}-page handout budget.`);
+    overBudget = true;
+  }
 }
 await browser.close();
+if (overBudget) process.exitCode = 1;
