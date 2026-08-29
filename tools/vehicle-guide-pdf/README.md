@@ -1,51 +1,53 @@
 # Vehicle guide print builder
 
-Turns a vehicle-guide JSON spec into a print-ready PDF for showroom
-use. The type, colors and section order match the guide pages on
-terryethompson.com, so the handout and the web page read as the same thing.
+Prints the real guide pages to PDF for showroom use.
 
-Rendering goes through Chromium via Playwright, which is already a
-devDependency for the browser tests. LibreOffice is not used and is not
-required.
+The handout **is** the page, printed. There is no separate print design, so
+the paper version cannot drift from the web version: same hero, same trim
+cards, same colours, same words. Add a guide page and it gets a matching
+handout with no extra work.
 
-## Build one
-
-```sh
-npm install               # once, from the repo root (uses Playwright)
-node vehicle-guide-pdf.mjs specs/equinox.json ../../Vehicles/print/2027-Chevy-Equinox-Guide.pdf
-```
-
-## Build all of them
+## Build
 
 ```sh
-for s in specs/*.json; do
-  name=$(basename "$s" .json)
-  node vehicle-guide-pdf.mjs "$s" "../../Vehicles/print/$name.pdf"
-done
+npm install                                          # once, from the repo root
+node tools/vehicle-guide-pdf/vehicle-guide-pdf.mjs   # every guide
 ```
 
-## Spec format
+Or one page:
 
-Top level: `title`, `heroLine`, `url`, `shortVersion`, `blocks`, `disclaimer`.
+```sh
+node tools/vehicle-guide-pdf/vehicle-guide-pdf.mjs Vehicles/2027-chevy-tahoe.html
+```
 
-`blocks` is an ordered list. Each entry has a `type`:
+Output goes to `Vehicles/print/`, named to match what the site already links
+to: `2027-chevy-tahoe.html` becomes `2027-Chevy-Tahoe-Guide.pdf`.
 
-| Type | Renders as | Fields |
-|---|---|---|
-| `heading` | Blue eyebrow, serif heading, rule | `label`, `heading`, optional `sub` |
-| `paras` | Body paragraphs | `items` (array of strings) |
-| `bullets` | Bulleted list, bold lead-in | `items` (array of `[lead, rest]`) |
-| `trims` | Trim table | `rows` (`name`, `tag`, `desc`, optional `price1`/`price2`), optional `priceHeads` |
-| `timeline` | Three availability cards | `cards` (`k`, `v`, `note`) |
-| `specs` | Tinted number cards | `cards` (`big`, `small`) |
-| `recs` | Recommendation cards | `cards` (`h`, `body`) |
-| `note` | Small italic caveat line | `text` |
+Re-run it after editing a guide page, or the handout will be a version behind.
 
-Omit `priceHeads` on a `trims` block and the price columns disappear, which is
-what the Tahoe and Silverado specs do while pricing is unpublished.
+A handout has to be something you can hand across a desk, so the budget is
+three sheets. The builder prints the page count for each guide and exits
+non-zero if one goes over, rather than letting it be discovered in the
+showroom with the paper already printed.
 
-## House rules
+## What changes for paper
 
-The same ones the web guides follow. No em dashes. Short sentences. The phone
-number is 716-932-4793. Say when a number is unpublished instead of estimating
-it.
+Deliberately little. Everything the page already does is what we want printed.
+The rules that get added are only the things paper cannot do:
+
+| Rule | Why |
+|---|---|
+| Hide `.sticky-bar` and `.subnav-mobile` | The nav is fixed to the viewport and would stamp itself over every sheet |
+| Hide `.print-bar` | A button offering this PDF, inside this PDF |
+| Tighter section padding | Paper is shorter than a scroll |
+| `break-inside: avoid` on cards | Never split a trim or spec card across a page |
+| Zero side margins | Keeps layout above the 768px mobile breakpoint, and lets the dark hero bleed to the paper edge the way it does on screen |
+| Footer with the phone number and page number | Paper has no address bar |
+| Trim and engine cards go 4-up | The print canvas is wider than the web column, so the same cards sit in fewer rows |
+| Printed at 0.70 scale | Lands every guide on three sheets at roughly 11pt body text |
+| Hide the availability timeline | Order banks, production start and dealer arrivals move every few weeks. Paper cannot be updated, and stale dates in a customer's hand are worse than none, so the timeline stays on the web page |
+
+## Rendering
+
+Chromium via Playwright, which is already a devDependency for the browser
+tests. LibreOffice is not used and is not required.
