@@ -45,11 +45,8 @@ const PRINT_CSS = `
   /* A button offering this very PDF, inside this very PDF. */
   .print-bar { display: none !important; }
 
-  /* Order banks, production start, dealer arrivals. These dates move every
-     few weeks. A printed sheet cannot be updated, and stale dates in a
-     customer's hand are worse than no dates, so the timeline stays on the
-     web page only. This is also what buys the third page. */
-  .timeline-section { display: none !important; }
+  /* Sections dropped from the handout, see PRINT_DROP_SECTIONS below. */
+  [data-print-drop] { display: none !important; }
 
   /* Paper is shorter than a scroll. Tighten the web rhythm without touching
      the type or the colour. */
@@ -76,10 +73,23 @@ const PRINT_CSS = `
   .summary-bar, .disclaimer, footer { break-inside: avoid; }
 `;
 
-/* A showroom handout has to be something you can hand across a desk.
-   0.70 prints the page at about 11pt body text and lands every guide on
-   three sheets. Raising it pushes past three; lowering it gets hard to read. */
-const SCALE = 0.70;
+/*
+ * Sections left off the handout, matched by their section label.
+ *
+ * Availability: order banks, production start and dealer arrivals move every
+ * few weeks. Paper cannot be updated, and stale dates in a customer's hand
+ * are worse than no dates.
+ * Pricing: same reasoning. It is the fastest-moving thing on the page, and
+ * it is a conversation Terry would rather have out loud.
+ *
+ * Both stay on the web page, which does get updated.
+ */
+const PRINT_DROP_SECTIONS = ['availability', 'pricing'];
+
+/* A handout has to be something you can hand across a desk. With those two
+   sections out, 0.75 still lands every guide on three sheets and prints
+   larger than 0.70 did. Above this, the Silverado needs a fourth. */
+const SCALE = 0.75;
 const MAX_PAGES = 3;
 
 const FOOTER = `
@@ -106,8 +116,28 @@ for (const html of targets) {
   const page = await browser.newPage();
   await page.goto(pathToFileURL(html).href, { waitUntil: 'load' });
   await page.addStyleTag({ content: PRINT_CSS });
-  // The page sets its own body padding from JS to clear the fixed nav.
-  await page.evaluate(() => { document.body.style.paddingTop = '0'; });
+  const dropped = await page.evaluate((labels) => {
+    // The page sets its own body padding from JS to clear the fixed nav.
+    document.body.style.paddingTop = '0';
+    const hit = [];
+    document.querySelectorAll('section').forEach((sec) => {
+      const label = sec.querySelector('.section-label');
+      if (!label) return;
+      if (labels.includes(label.textContent.trim().toLowerCase())) {
+        sec.setAttribute('data-print-drop', '');
+        hit.push(label.textContent.trim());
+      }
+    });
+    return hit;
+  }, PRINT_DROP_SECTIONS);
+
+  // If a guide labels these differently the section would silently stay in,
+  // so say what was actually dropped rather than assuming.
+  const missed = PRINT_DROP_SECTIONS.filter(
+    (l) => !dropped.some((d) => d.toLowerCase() === l));
+  if (missed.length) {
+    console.error(`  note: no section labelled ${missed.join(', ')} on this page`);
+  }
   const out = join(OUT, pdfNameFor(html));
   await page.pdf({
     path: out,
@@ -127,7 +157,7 @@ for (const html of targets) {
   // showroom with a stack of paper already printed.
   const pages = (readFileSync(out).toString('latin1')
     .match(/\/Type\s*\/Page[^s]/g) || []).length;
-  console.log(`wrote ${out.replace(ROOT + '/', '')}  (${pages} pages)`);
+  console.log(`wrote ${out.replace(ROOT + '/', '')}  (${pages} pages, dropped: ${dropped.join(', ') || 'nothing'})`);
   if (pages > MAX_PAGES) {
     console.error(`  WARNING: over the ${MAX_PAGES}-page handout budget.`);
     overBudget = true;
