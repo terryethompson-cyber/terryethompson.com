@@ -44,8 +44,8 @@ The rules that get added are only the things paper cannot do:
 | Zero side margins | Keeps layout above the 768px mobile breakpoint, and lets the dark hero bleed to the paper edge the way it does on screen |
 | Footer with the phone number and page number | Paper has no address bar |
 | Trim and engine cards go 4-up | The print canvas is wider than the web column, so the same cards sit in fewer rows |
-| Printed at 0.70 scale | Lands every guide on three sheets at roughly 11pt body text |
-| Hide the availability timeline | Order banks, production start and dealer arrivals move every few weeks. Paper cannot be updated, and stale dates in a customer's hand are worse than none, so the timeline stays on the web page |
+| Printed at 0.75 scale | Lands every guide on three sheets, as large as it can print and still fit |
+| Drop the Availability and Pricing sections | Both move faster than anything else on the page. Paper cannot be updated, and stale dates or stale numbers in a customer's hand are worse than none. Both stay on the web page. Edit `PRINT_DROP_SECTIONS` in the builder to change what comes out; sections are matched by their section label |
 
 ## Rendering
 
