@@ -116,7 +116,7 @@ const cases = [
   },
   {
     name: 'a real phone number is accepted',
-    files: { 'index.html': page('<a href="tel:6098658811">Call</a>') },
+    files: { 'index.html': page('<a href="tel:7169324793">Call</a>') },
     expectExit: 0,
     expect: 'All links check out',
   },

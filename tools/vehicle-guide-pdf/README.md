@@ -1,17 +1,18 @@
 # Vehicle guide print builder
 
-Turns a vehicle-guide JSON spec into a print-ready Word document for showroom
+Turns a vehicle-guide JSON spec into a print-ready PDF for showroom
 use. The type, colors and section order match the guide pages on
 terryethompson.com, so the handout and the web page read as the same thing.
 
-The repo sets `"type": "module"`, so this script keeps the `.cjs` extension to
-stay CommonJS. Renaming it back to `.js` will break it.
+Rendering goes through Chromium via Playwright, which is already a
+devDependency for the browser tests. LibreOffice is not used and is not
+required.
 
 ## Build one
 
 ```sh
-npm install               # once, from the repo root
-node vehicle-guide-docx.cjs specs/equinox.json ../../Vehicles/print/2027-Chevy-Equinox-Guide.docx
+npm install               # once, from the repo root (uses Playwright)
+node vehicle-guide-pdf.mjs specs/equinox.json ../../Vehicles/print/2027-Chevy-Equinox-Guide.pdf
 ```
 
 ## Build all of them
@@ -19,7 +20,7 @@ node vehicle-guide-docx.cjs specs/equinox.json ../../Vehicles/print/2027-Chevy-E
 ```sh
 for s in specs/*.json; do
   name=$(basename "$s" .json)
-  node vehicle-guide-docx.cjs "$s" "../../Vehicles/print/$name.docx"
+  node vehicle-guide-pdf.mjs "$s" "../../Vehicles/print/$name.pdf"
 done
 ```
 
@@ -46,5 +47,5 @@ what the Tahoe and Silverado specs do while pricing is unpublished.
 ## House rules
 
 The same ones the web guides follow. No em dashes. Short sentences. The phone
-number is 609-865-8811. Say when a number is unpublished instead of estimating
+number is 716-932-4793. Say when a number is unpublished instead of estimating
 it.

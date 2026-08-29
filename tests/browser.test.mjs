@@ -76,7 +76,7 @@ describe('the vehicle link box on the home page', () => {
   test('still opens a blank message when nothing is pasted', async () => {
     const page = await openPage('index.html');
     const href = await page.getAttribute('.hook-send', 'href');
-    assert.equal(href, 'sms:6098658811');
+    assert.equal(href, 'sms:7169324793');
     await page.close();
   });
 
@@ -112,7 +112,7 @@ describe('booking a time', () => {
 
 describe('contact links', () => {
   test('every call and text link is the same working number', async () => {
-    const expected = '6098658811';
+    const expected = '7169324793';
     for (const file of htmlFiles()) {
       const html = readFileSync(join(ROOT, file), 'utf8');
       // Only real links — not the "sms:" string literals inside page scripts.
