@@ -76,7 +76,7 @@ describe('the vehicle link box on the home page', () => {
   test('still opens a blank message when nothing is pasted', async () => {
     const page = await openPage('index.html');
     const href = await page.getAttribute('.hook-send', 'href');
-    assert.equal(href, 'sms:7169324793');
+    assert.equal(href, 'sms:6098658811');
     await page.close();
   });
 
@@ -111,16 +111,20 @@ describe('booking a time', () => {
 });
 
 describe('contact links', () => {
-  test('every call and text link is the same working number', async () => {
-    const expected = '7169324793';
+  // Calls go to the direct line at the dealership; that line does not receive
+  // SMS, so texts go to a second number. Crossing them wires a customer's tap
+  // to a number that cannot answer it.
+  test('calls go to the direct line and texts to the number that receives them', async () => {
+    const expected = { tel: '7169324793', sms: '6098658811' };
     for (const file of htmlFiles()) {
       const html = readFileSync(join(ROOT, file), 'utf8');
       // Only real links — not the "sms:" string literals inside page scripts.
-      for (const m of html.matchAll(/href\s*=\s*["'](?:tel|sms):([^"'?&]+)/g)) {
-        const digits = m[1].replace(/\D/g, '');
+      for (const m of html.matchAll(/href\s*=\s*["'](tel|sms):([^"'?&]+)/g)) {
+        const scheme = m[1].toLowerCase();
+        const digits = m[2].replace(/\D/g, '');
         assert.equal(
-          digits, expected,
-          `${file} has a contact link for ${digits}, expected ${expected}`
+          digits, expected[scheme],
+          `${file} has a ${scheme}: link for ${digits}, expected ${expected[scheme]}`
         );
       }
     }
