@@ -21,8 +21,16 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 // Configuration
 // ---------------------------------------------------------------------------
 
-/** The one phone number and business name, as they must appear everywhere. */
-const PHONE_DIGITS = '7169324793';
+/**
+ * Two numbers, each with one job.
+ *
+ * Calls go to Terry's direct line at the dealership. That line does not
+ * receive SMS — texting it comes back "Invalid Number" — so texts go to a
+ * separate number that does. It is deliberately never printed on a page:
+ * customers reach it by tapping Text, not by reading it.
+ */
+const CALL_DIGITS = '7169324793';
+const TEXT_DIGITS = '6098658811';
 const BUSINESS = 'West Herr Chevrolet of Williamsville';
 
 /** An unreferenced file bigger than this is dead weight worth knowing about. */
@@ -145,11 +153,20 @@ for (const page of visitablePages) {
 for (const page of pages) {
   const html = sourceOf.get(page);
 
-  for (const m of html.matchAll(/href\s*=\s*["'](?:tel|sms):([^"'?&]+)/gi)) {
-    const digits = m[1].replace(/\D/g, '');
-    if (digits !== PHONE_DIGITS) {
-      err(page, 'Wrong phone number', `found ${digits}, expected ${PHONE_DIGITS}`);
+  for (const m of html.matchAll(/href\s*=\s*["'](tel|sms):([^"'?&]+)/gi)) {
+    const [scheme, digits] = [m[1].toLowerCase(), m[2].replace(/\D/g, '')];
+    const expected = scheme === 'tel' ? CALL_DIGITS : TEXT_DIGITS;
+    if (digits !== expected) {
+      err(page, `Wrong number on a ${scheme === 'tel' ? 'call' : 'text'} link`,
+        `found ${digits}, expected ${expected}`);
     }
+  }
+
+  // The text number is for tapping, not reading. Printed on a page it would
+  // get called, and that line does not take calls.
+  if (html.includes('609-865-8811') || html.includes('609.865.8811')) {
+    err(page, 'The text number is printed on the page',
+      'It belongs in sms: links only. Calls go to 716-932-4793.');
   }
 
   for (const m of html.matchAll(/West Herr Chevrolet(?: of ([A-Za-z]+))?/g)) {
