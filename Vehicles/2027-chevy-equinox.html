@@ -475,13 +475,41 @@ transition: background 0.15s;
 }
 .print-link:hover { background: var(--primary-hover); }
 .print-note { font-size: 14px; color: var(--muted); }
-</style>
+
+/* ---------------------------------------------------------------------
+   Brand mark.
+
+   Wide screens get it beside the name in the nav row. That row is hidden
+   on a phone, so a smaller mark rides the utility strip instead, inline
+   in the tagline — the Call and Text buttons already set that row's
+   height, so it costs the fixed header nothing and stays under the 150px
+   limit tests/browser.test.mjs enforces.
+
+   Both are decorative next to text that already says the name, except on
+   a phone where the name is not rendered and the small mark carries it.
+   --------------------------------------------------------------------- */
+.brand-mark {
+  width: 24px; height: 24px; border-radius: 6px;
+  margin-right: 9px; vertical-align: -6px;
+}
+.brand-mark-sm { display: none; }
+@media (max-width: 900px) {
+  .brand-mark-sm {
+    display: inline-block; vertical-align: middle;
+    width: 18px; height: 18px; border-radius: 5px; margin-right: 8px;
+    /* The mark must not out-grow the tagline's line box, or the fixed
+       header gets taller on exactly the pages with the least room. */
+    margin-top: -2px; margin-bottom: -2px;
+  }
+}
+    </style>
 </head>
 <body>
 
 <div class="sticky-bar" style="display: flex; flex-direction: column; padding: 0;">
 <div class="top-utility-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 8px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); background-color: rgba(0,0,0,0.2);">
 <div class="utility-tagline" style="font-size: 13px; font-weight: 500; letter-spacing: 0.5px; color: #e2e8f0;">
+            <img class="brand-mark-sm" src="/brand/logo-mark.svg" alt="Terry Thompson" width="19" height="19">
 Automotive Advisor<span class="tagline-brands"> | Chevrolet &amp; 27 Other Brands</span>
 </div>
 <div class="sticky-ctas" style="margin: 0; display: flex; gap: 12px;">
@@ -497,7 +525,7 @@ Text Terry
 </div>
 
 <div class="bottom-nav-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 12px 24px;">
-<div class="brand">
+<div class="brand"><img class="brand-mark" src="/brand/logo-mark.svg" alt="" width="24" height="24">
 <a href="/" style="color:inherit;text-decoration:none;"><span>Terry Thompson</span></a>
 </div>
 <div class="sticky-nav">
