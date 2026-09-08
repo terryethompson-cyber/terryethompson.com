@@ -177,7 +177,33 @@ for (const page of pages) {
 }
 
 // ---------------------------------------------------------------------------
-// 3. The sitemap matches reality
+// 3. The booking link agrees with itself
+// ---------------------------------------------------------------------------
+
+/*
+ * The appointment page carries the Google booking address twice: once in the
+ * frame that shows the times, once in the "Open the booking page" link that
+ * still works when the frame does not. They are long opaque strings, so
+ * updating one and missing the other is the easy mistake — and it sends the
+ * customer who already could not see the calendar to a second dead end.
+ */
+for (const page of pages) {
+  const html = sourceOf.get(page);
+  const ids = new Set();
+
+  for (const m of html.matchAll(/calendar\.google\.com\/calendar\/appointments\/schedules\/([^"'?]+)/g)) {
+    ids.add(m[1]);
+  }
+
+  if (ids.size > 1) {
+    err(page, 'Two different booking calendars on one page',
+      `Found ${ids.size}: ${[...ids].map((id) => id.slice(0, 12) + '…').join(', ')}. ` +
+      'The frame and the direct link must point at the same schedule.');
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 4. The sitemap matches reality
 // ---------------------------------------------------------------------------
 
 const sitemapPath = join(ROOT, 'sitemap.xml');
@@ -194,7 +220,7 @@ try { readFileSync(join(ROOT, 'robots.txt'), 'utf8'); }
 catch { err('robots.txt', 'No robots.txt', 'Search engines look for it, and it points them at the sitemap.'); }
 
 // ---------------------------------------------------------------------------
-// 4. Nothing heavy that nobody uses
+// 5. Nothing heavy that nobody uses
 // ---------------------------------------------------------------------------
 
 const allHtml = pages.map((p) => sourceOf.get(p)).join('\n');

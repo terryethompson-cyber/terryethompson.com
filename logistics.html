@@ -191,6 +191,33 @@ body { padding-top: 104px; }
   body { padding-top: 160px; }
 }
 
+    
+/* ---------------------------------------------------------------------
+   Brand mark.
+
+   Wide screens get it beside the name in the nav row. That row is hidden
+   on a phone, so a smaller mark rides the utility strip instead, inline
+   in the tagline — the Call and Text buttons already set that row's
+   height, so it costs the fixed header nothing and stays under the 150px
+   limit tests/browser.test.mjs enforces.
+
+   Both are decorative next to text that already says the name, except on
+   a phone where the name is not rendered and the small mark carries it.
+   --------------------------------------------------------------------- */
+.brand-mark {
+  width: 24px; height: 24px; border-radius: 6px;
+  margin-right: 9px; vertical-align: -6px;
+}
+.brand-mark-sm { display: none; }
+@media (max-width: 900px) {
+  .brand-mark-sm {
+    display: inline-block; vertical-align: middle;
+    width: 18px; height: 18px; border-radius: 5px; margin-right: 8px;
+    /* The mark must not out-grow the tagline's line box, or the fixed
+       header gets taller on exactly the pages with the least room. */
+    margin-top: -2px; margin-bottom: -2px;
+  }
+}
     </style>
 </head>
 <body>
@@ -199,6 +226,7 @@ body { padding-top: 104px; }
     <!-- Row 1: utility strip. Call and Text live here, top right. -->
     <div class="top-utility-row">
         <div class="utility-tagline">
+            <img class="brand-mark-sm" src="/brand/logo-mark.svg" alt="Terry Thompson" width="19" height="19">
             Automotive Advisor<span class="tagline-brands"> | Chevrolet &amp; 27 Other Brands</span>
         </div>
         <div class="sticky-ctas">
@@ -215,7 +243,7 @@ body { padding-top: 104px; }
 
     <!-- Row 2: main navigation -->
     <div class="bottom-nav-row">
-        <div class="brand"><a href="/"><span>Terry Thompson</span></a></div>
+        <div class="brand"><img class="brand-mark" src="/brand/logo-mark.svg" alt="" width="24" height="24"><a href="/"><span>Terry Thompson</span></a></div>
         <div class="sticky-nav">
             <a href="/Vehicles/">Vehicle Guides</a>
             <a href="/math.html">Car Math</a>
