@@ -70,18 +70,20 @@
         .intro-section li { margin-bottom: 10px; font-size: 15px; line-height: 1.5; }
         .intro-section strong { color: #1a202c; }
         
+        /* Google ships this embed at height="600"; 700 is the size Terry
+           asked for and gives the grid room for a full week of slots. */
+        iframe { width: 100%; height: 700px; border: 0; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        @media (max-width: 700px) { iframe { height: 640px; } }
+
         /* ---------------------------------------------------------------
-           Booking runs through Terry, not through a frame.
+           Call and text sit above the calendar, not behind it.
 
-           This page used to end in an embedded Google booking calendar.
-           That schedule was deleted, so the frame and the link beside it
-           both answered "Appointment not found", and every customer who
-           tapped Schedule on the homepage landed on a Google error.
-
-           Call and text are plain links on this page. Nothing to load,
-           nothing third-party to fail, and they reach Terry either way.
-           When a booking calendar exists again it goes back below this
-           card as an extra option, not as the only route through.
+           The previous booking schedule was deleted and this page carried
+           the dead frame for however long, so every customer who tapped
+           Schedule met "Appointment not found" with nothing else on offer.
+           These two links are plain HTML that this page controls. They stay
+           whatever Google does, which is the whole point of their being
+           here rather than being a fallback that only appears on failure.
            --------------------------------------------------------------- */
         .booking-fallback {
             background: #ffffff; padding: 22px 24px; border-radius: 8px;
@@ -194,8 +196,8 @@
 
     <!-- The only booking route on the page, so it cannot silently break. -->
     <div class="booking-fallback">
-        <p><strong>Ready to set a time?</strong> Call or text and we will put it on
-        the calendar together. Both of these reach me directly, not a call center
+        <p><strong>Pick a time below</strong>, or if you would rather set it in a
+        conversation, call or text me directly. Both reach me, not a call center
         and not the dealership front desk.</p>
         <div class="booking-actions">
             <a class="primary" href="tel:+17169324793">
@@ -208,6 +210,11 @@
             </a>
         </div>
     </div>
+
+    <!-- Inline booking page from Google Calendar. Height comes from the CSS
+         above, not the tag, so the phone override applies. -->
+    <iframe title="Book an appointment with Terry Thompson"
+            src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2t5OwZFV5b103aC-kTzioajHpoF4nW0qsaA7rNvi9Tw_-8VCFDV0REeQcpzNZoNMt5HEHzGrbc?gv=true"></iframe>
 
 </div>
 
