@@ -6,7 +6,9 @@
     <title>WNY Vehicle Logistics | Terry Thompson</title>
     <meta name="description" content="How trade-in equity, the New York sales tax advantage, lease returns and plate transfers actually work — and exactly what to bring on delivery day. From Terry Thompson in Buffalo.">
     <link rel="canonical" href="https://terryethompson.com/logistics.html">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/brand/logo-mark.svg" type="image/svg+xml">
+    <link rel="icon" href="/brand/logo-mark-32.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
     <link rel="stylesheet" href="/assets/brand-band.css">
 
     <!-- How this page looks when the link is texted or shared -->
@@ -190,6 +192,33 @@ body { padding-top: 104px; }
   body { padding-top: 160px; }
 }
 
+    
+/* ---------------------------------------------------------------------
+   Brand mark.
+
+   Wide screens get it beside the name in the nav row. That row is hidden
+   on a phone, so a smaller mark rides the utility strip instead, inline
+   in the tagline — the Call and Text buttons already set that row's
+   height, so it costs the fixed header nothing and stays under the 150px
+   limit tests/browser.test.mjs enforces.
+
+   Both are decorative next to text that already says the name, except on
+   a phone where the name is not rendered and the small mark carries it.
+   --------------------------------------------------------------------- */
+.brand-mark {
+  width: 24px; height: 24px; border-radius: 6px;
+  margin-right: 9px; vertical-align: -6px;
+}
+.brand-mark-sm { display: none; }
+@media (max-width: 900px) {
+  .brand-mark-sm {
+    display: inline-block; vertical-align: middle;
+    width: 18px; height: 18px; border-radius: 5px; margin-right: 8px;
+    /* The mark must not out-grow the tagline's line box, or the fixed
+       header gets taller on exactly the pages with the least room. */
+    margin-top: -2px; margin-bottom: -2px;
+  }
+}
     </style>
 </head>
 <body>
@@ -198,6 +227,7 @@ body { padding-top: 104px; }
     <!-- Row 1: utility strip. Call and Text live here, top right. -->
     <div class="top-utility-row">
         <div class="utility-tagline">
+            <img class="brand-mark-sm" src="/brand/logo-mark.svg" alt="Terry Thompson" width="19" height="19">
             Automotive Advisor<span class="tagline-brands"> | Chevrolet &amp; 27 Other Brands</span>
         </div>
         <div class="sticky-ctas">
@@ -205,7 +235,7 @@ body { padding-top: 104px; }
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                 Call Terry
             </a>
-            <a href="sms:7169324793" class="btn-text">
+            <a href="sms:6098658811" class="btn-text">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                 Text Terry
             </a>
@@ -214,7 +244,7 @@ body { padding-top: 104px; }
 
     <!-- Row 2: main navigation -->
     <div class="bottom-nav-row">
-        <div class="brand"><a href="/"><span>Terry Thompson</span></a></div>
+        <div class="brand"><img class="brand-mark" src="/brand/logo-mark.svg" alt="" width="24" height="24"><a href="/"><span>Terry Thompson</span></a></div>
         <div class="sticky-nav">
             <a href="/Vehicles/">Vehicle Guides</a>
             <a href="/math.html">Car Math</a>
@@ -250,7 +280,7 @@ body { padding-top: 104px; }
           <a href="/#long-term-value">Long-Term Value</a>
         </nav>
         <div class="brand-band-cta">
-          <a class="brand-band-action" href="sms:7169324793">Text Terry &middot; 716-932-4793</a>
+          <a class="brand-band-action" href="sms:6098658811">Text Terry</a>
           <p class="brand-band-site">terryethompson.com</p>
         </div>
       </div>

@@ -21,8 +21,16 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 // Configuration
 // ---------------------------------------------------------------------------
 
-/** The one phone number and business name, as they must appear everywhere. */
-const PHONE_DIGITS = '7169324793';
+/**
+ * Two numbers, each with one job.
+ *
+ * Calls go to Terry's direct line at the dealership. That line does not
+ * receive SMS — texting it comes back "Invalid Number" — so texts go to a
+ * separate number that does. It is deliberately never printed on a page:
+ * customers reach it by tapping Text, not by reading it.
+ */
+const CALL_DIGITS = '7169324793';
+const TEXT_DIGITS = '6098658811';
 const BUSINESS = 'West Herr Chevrolet of Williamsville';
 
 /** An unreferenced file bigger than this is dead weight worth knowing about. */
@@ -145,11 +153,20 @@ for (const page of visitablePages) {
 for (const page of pages) {
   const html = sourceOf.get(page);
 
-  for (const m of html.matchAll(/href\s*=\s*["'](?:tel|sms):([^"'?&]+)/gi)) {
-    const digits = m[1].replace(/\D/g, '');
-    if (digits !== PHONE_DIGITS) {
-      err(page, 'Wrong phone number', `found ${digits}, expected ${PHONE_DIGITS}`);
+  for (const m of html.matchAll(/href\s*=\s*["'](tel|sms):([^"'?&]+)/gi)) {
+    const [scheme, digits] = [m[1].toLowerCase(), m[2].replace(/\D/g, '')];
+    const expected = scheme === 'tel' ? CALL_DIGITS : TEXT_DIGITS;
+    if (digits !== expected) {
+      err(page, `Wrong number on a ${scheme === 'tel' ? 'call' : 'text'} link`,
+        `found ${digits}, expected ${expected}`);
     }
+  }
+
+  // The text number is for tapping, not reading. Printed on a page it would
+  // get called, and that line does not take calls.
+  if (html.includes('609-865-8811') || html.includes('609.865.8811')) {
+    err(page, 'The text number is printed on the page',
+      'It belongs in sms: links only. Calls go to 716-932-4793.');
   }
 
   for (const m of html.matchAll(/West Herr Chevrolet(?: of ([A-Za-z]+))?/g)) {
@@ -160,7 +177,33 @@ for (const page of pages) {
 }
 
 // ---------------------------------------------------------------------------
-// 3. The sitemap matches reality
+// 3. The booking link agrees with itself
+// ---------------------------------------------------------------------------
+
+/*
+ * The appointment page carries the Google booking address twice: once in the
+ * frame that shows the times, once in the "Open the booking page" link that
+ * still works when the frame does not. They are long opaque strings, so
+ * updating one and missing the other is the easy mistake — and it sends the
+ * customer who already could not see the calendar to a second dead end.
+ */
+for (const page of pages) {
+  const html = sourceOf.get(page);
+  const ids = new Set();
+
+  for (const m of html.matchAll(/calendar\.google\.com\/calendar\/appointments\/schedules\/([^"'?]+)/g)) {
+    ids.add(m[1]);
+  }
+
+  if (ids.size > 1) {
+    err(page, 'Two different booking calendars on one page',
+      `Found ${ids.size}: ${[...ids].map((id) => id.slice(0, 12) + '…').join(', ')}. ` +
+      'The frame and the direct link must point at the same schedule.');
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 4. The sitemap matches reality
 // ---------------------------------------------------------------------------
 
 const sitemapPath = join(ROOT, 'sitemap.xml');
@@ -177,7 +220,7 @@ try { readFileSync(join(ROOT, 'robots.txt'), 'utf8'); }
 catch { err('robots.txt', 'No robots.txt', 'Search engines look for it, and it points them at the sitemap.'); }
 
 // ---------------------------------------------------------------------------
-// 4. Nothing heavy that nobody uses
+// 5. Nothing heavy that nobody uses
 // ---------------------------------------------------------------------------
 
 const allHtml = pages.map((p) => sourceOf.get(p)).join('\n');
