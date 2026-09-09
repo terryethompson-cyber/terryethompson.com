@@ -70,18 +70,18 @@
         .intro-section li { margin-bottom: 10px; font-size: 15px; line-height: 1.5; }
         .intro-section strong { color: #1a202c; }
         
-        iframe { width: 100%; height: 700px; border: 0; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        @media (max-width: 700px) { iframe { height: 640px; } }
-
         /* ---------------------------------------------------------------
-           A way through when the calendar isn't there.
+           Booking runs through Terry, not through a frame.
 
-           The booking times come from Google, in a frame this page cannot
-           see into. When that frame fails — a deleted schedule, a stale
-           link, a customer's browser blocking third-party frames — the
-           page used to end in a silent grey box and the customer left.
-           These two routes are plain links on this page, so they work
-           whatever Google does.
+           This page used to end in an embedded Google booking calendar.
+           That schedule was deleted, so the frame and the link beside it
+           both answered "Appointment not found", and every customer who
+           tapped Schedule on the homepage landed on a Google error.
+
+           Call and text are plain links on this page. Nothing to load,
+           nothing third-party to fail, and they reach Terry either way.
+           When a booking calendar exists again it goes back below this
+           card as an extra option, not as the only route through.
            --------------------------------------------------------------- */
         .booking-fallback {
             background: #ffffff; padding: 22px 24px; border-radius: 8px;
@@ -185,23 +185,20 @@
     <!-- Welcome expectations card -->
     <div class="intro-section">
         <h1>Let's Find the Right Fit</h1>
-        <p>Before you pick a time below, here is what to expect from our call:</p>
+        <p>Before we talk, here is what to expect from our call:</p>
         <ul>
             <li><strong>First Principles Focus:</strong> We will work through your next vehicle on what actually matters: safety, reliability, monthly affordability, lifestyle fit, and long-term value.</li>
             <li><strong>Have Handy:</strong> If you are considering a trade, keep your current vehicle's year, make, model, and mileage nearby. Bring your questions too. No paperwork, no credit application, and no obligation on this call.</li>
         </ul>
     </div>
 
-    <!-- Always reachable, whether or not the frame below renders. -->
+    <!-- The only booking route on the page, so it cannot silently break. -->
     <div class="booking-fallback">
-        <p><strong>No times showing below?</strong> The calendar loads from Google and
-        occasionally won't open inside this page. Either of these reaches me directly.</p>
+        <p><strong>Ready to set a time?</strong> Call or text and we will put it on
+        the calendar together. Both of these reach me directly, not a call center
+        and not the dealership front desk.</p>
         <div class="booking-actions">
-            <a class="primary" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1tVrXPGH5t9LjcqsLnWNwksRy7A14clmwnKU_-4ND2mUgplUIZXdSC9VZq6uoJqey52d_LcJy6"
-               target="_blank" rel="noopener">
-                Open the booking page &rarr;
-            </a>
-            <a href="tel:+17169324793">
+            <a class="primary" href="tel:+17169324793">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                 Call 716-932-4793
             </a>
@@ -212,9 +209,6 @@
         </div>
     </div>
 
-    <!-- Embedded Google Calendar -->
-    <iframe title="Book an appointment with Terry Thompson"
-            src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1tVrXPGH5t9LjcqsLnWNwksRy7A14clmwnKU_-4ND2mUgplUIZXdSC9VZq6uoJqey52d_LcJy6?gv=true"></iframe>
 </div>
 
 </body>
