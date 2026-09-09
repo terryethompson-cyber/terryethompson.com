@@ -154,7 +154,11 @@ for (const page of pages) {
   const html = sourceOf.get(page);
 
   for (const m of html.matchAll(/href\s*=\s*["'](tel|sms):([^"'?&]+)/gi)) {
-    const [scheme, digits] = [m[1].toLowerCase(), m[2].replace(/\D/g, '')];
+    const [scheme, raw] = [m[1].toLowerCase(), m[2].replace(/\D/g, '')];
+    // Links are written E.164 ("+1..."), which some Android carriers handle more
+    // reliably than a bare ten digits. Compare on the national number so either
+    // form passes and a genuinely wrong number still fails.
+    const digits = raw.length === 11 && raw.startsWith('1') ? raw.slice(1) : raw;
     const expected = scheme === 'tel' ? CALL_DIGITS : TEXT_DIGITS;
     if (digits !== expected) {
       err(page, `Wrong number on a ${scheme === 'tel' ? 'call' : 'text'} link`,

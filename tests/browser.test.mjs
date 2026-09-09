@@ -76,7 +76,7 @@ describe('the vehicle link box on the home page', () => {
   test('still opens a blank message when nothing is pasted', async () => {
     const page = await openPage('index.html');
     const href = await page.getAttribute('.hook-send', 'href');
-    assert.equal(href, 'sms:6098658811');
+    assert.equal(href, 'sms:+16098658811');
     await page.close();
   });
 
@@ -121,7 +121,11 @@ describe('contact links', () => {
       // Only real links — not the "sms:" string literals inside page scripts.
       for (const m of html.matchAll(/href\s*=\s*["'](tel|sms):([^"'?&]+)/g)) {
         const scheme = m[1].toLowerCase();
-        const digits = m[2].replace(/\D/g, '');
+        const raw = m[2].replace(/\D/g, '');
+        // Links are written E.164 ("+1..."), which some Android carriers
+        // handle more reliably. Compare on the national number so either form
+        // passes and a crossed number still fails.
+        const digits = raw.length === 11 && raw.startsWith('1') ? raw.slice(1) : raw;
         assert.equal(
           digits, expected[scheme],
           `${file} has a ${scheme}: link for ${digits}, expected ${expected[scheme]}`
