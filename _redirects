@@ -1,0 +1,15 @@
+# Short URLs for links that travel off the site: a text message, a business
+# card, something said out loud on a call. Nothing on the site links this way.
+#
+# The pages live at their .html paths and link to each other that way, which is
+# what each one declares as its canonical. These rules only catch someone
+# arriving at the short form from outside, and send them to the real address
+# instead of leaving them on a 404.
+#
+# Netlify skips a redirect rule when the request already matches a file it can
+# serve, so on a host that resolves extensionless paths by itself this rule is
+# never reached. It is here so the short URL does not depend on that behaviour.
+# tests/check-links.mjs flags extensionless links inside the site for the same
+# reason: it is not guaranteed, so it should not be relied on silently.
+
+/appointment    /appointment.html    301

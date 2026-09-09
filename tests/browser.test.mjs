@@ -98,14 +98,45 @@ describe('the vehicle link box on the home page', () => {
 });
 
 describe('booking a time', () => {
-  test('the calendar is embedded and points at Google Calendar', async () => {
+  /**
+   * This used to assert an iframe existed and its src began with
+   * calendar.google.com. It passed every run for as long as the schedule
+   * behind that URL was deleted and customers were landing on Google's
+   * "Appointment not found", because a well-formed link to a dead schedule
+   * is indistinguishable from a working one at this distance. Green tests,
+   * broken booking, found by a customer rather than by CI.
+   *
+   * So the guarantee moved. A frame is not a booking route; it is a
+   * third-party thing this page cannot see into. What the page owes a
+   * customer is a way to reach Terry that the page itself controls. That is
+   * the invariant now, and an embed is checked as an extra rather than as
+   * the thing everything depends on.
+   */
+  test('a customer can always reach Terry from this page', async () => {
     const page = await openPage('appointment.html');
-    const src = await page.getAttribute('iframe', 'src');
-    assert.ok(src, 'the appointment page has no calendar embed');
-    assert.ok(
-      src.startsWith('https://calendar.google.com/'),
-      `calendar embed points somewhere unexpected: ${src}`
-    );
+    // Scoped to the booking card, not the whole page: the sticky header also
+    // carries Call and Text, and it would keep this green while the booking
+    // section itself offered a customer nothing.
+    const booking = page.locator('.booking-actions');
+    const call = booking.locator('a[href^="tel:"]').first();
+    const text = booking.locator('a[href^="sms:"]').first();
+    assert.ok(await call.isVisible(), 'the booking section offers no way to call');
+    assert.ok(await text.isVisible(), 'the booking section offers no way to text');
+    await page.close();
+  });
+
+  // No embed is a valid state: booking runs through call and text whenever
+  // there is no live schedule. If one is on the page, it has to be real.
+  test('any booking embed points at Google Calendar', async () => {
+    const page = await openPage('appointment.html');
+    const frames = page.locator('iframe');
+    for (let i = 0; i < (await frames.count()); i++) {
+      const src = await frames.nth(i).getAttribute('src');
+      assert.ok(
+        src && src.startsWith('https://calendar.google.com/'),
+        `booking embed points somewhere unexpected: ${src}`
+      );
+    }
     await page.close();
   });
 });
