@@ -9,6 +9,7 @@
 <link rel="icon" href="/brand/logo-mark.svg" type="image/svg+xml">
 <link rel="icon" href="/brand/logo-mark-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/brand-band.css">
 
 <!-- How this page looks when the link is texted or shared -->
 <meta property="og:type" content="website">
@@ -408,6 +409,34 @@
   }
   .why-card p { font-size: 15px; color: var(--muted); line-height: 1.65; }
 
+  /* ─── THE FOUR PRINCIPLES ─── */
+  /* These four cards are where the brand band's buttons land, from any page on
+     the site. Each one hands the reader on to the page that goes deeper. */
+  .principles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .principle-card {
+    display: flex;
+    flex-direction: column;
+    padding: 28px 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    /* The header is fixed, so an anchored card would otherwise land underneath it. */
+    scroll-margin-top: 120px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .principle-card:hover { border-color: var(--primary); box-shadow: 0 4px 24px rgba(0,87,184,0.12); }
+  .principle-card h3 {
+    font-family: 'Cambria', Georgia, 'Times New Roman', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .principle-card p { font-size: 15px; color: var(--muted); line-height: 1.65; margin-bottom: 14px; }
+  /* The four cards run to different lengths; the links still line up. */
+  .principle-card a { margin-top: auto; font-size: 14px; font-weight: 600; color: var(--primary); text-decoration: none; }
+  .principle-card a:hover { color: var(--primary-hover); text-decoration: underline; }
+  @media (max-width: 1000px) { .principles-grid { grid-template-columns: repeat(2, 1fr); } }
+
   /* ─── SITUATION BUTTONS ─── */
   .situation-section {
     background: var(--light);
@@ -536,7 +565,7 @@
     }
     .hero-visual { align-items: center; max-width: 280px; margin: 0 auto; }
     .hero-photo-frame { max-width: 280px; }
-    .why-grid, .situation-grid, .reviews-grid, .final-grid {
+    .why-grid, .situation-grid, .reviews-grid, .final-grid, .principles-grid {
       grid-template-columns: 1fr;
     }
     .trust-inner { grid-template-columns: 1fr; gap: 14px; }
@@ -640,6 +669,23 @@
 </div>
 </div>
 
+<!-- First Principles brand band. The markup is the same on every page; the
+     styles live in /assets/brand-band.css. -->
+<aside class="brand-band brand-band--compact" aria-label="Terry Thompson, First Principles of Car Buying">
+  <div class="brand-band-inner">
+    <nav class="brand-band-pillars" aria-label="The four First Principles of Car Buying">
+      <a href="/#safety">Safety</a>
+      <a href="/#affordability">Affordability</a>
+      <a href="/#lifestyle-fit">Lifestyle Fit</a>
+      <a href="/#long-term-value">Long-Term Value</a>
+    </nav>
+    <div class="brand-band-cta">
+      <a class="brand-band-action" href="sms:6098658811">Text Terry</a>
+      <p class="brand-band-site">terryethompson.com</p>
+    </div>
+  </div>
+</aside>
+
 <div class="hook-section">
   <div class="hook-inner">
     <p class="section-label">The Easiest Way to Start</p>
@@ -668,6 +714,53 @@
     <div class="trust-item">30 Years in Tech</div>
   </div>
 </div>
+
+<section class="principles-section">
+  <div class="section-inner">
+    <p class="section-label">First Principles of Car Buying</p>
+    <h2>Four questions every deal has to pass.</h2>
+    <p class="section-sub">
+      This is the whole method. I run your vehicle through all four before you sign anything, and
+      if it fails one of them, I tell you.
+    </p>
+    <div class="principles-grid">
+      <div class="principle-card" id="safety">
+        <h3>Safety</h3>
+        <p>
+          What the vehicle does in a Buffalo January, not on a brochure page. Real all-wheel drive
+          behavior, braking, crash ratings, and which driver-assist features are actually on the trim
+          you are looking at.
+        </p>
+        <a href="/Vehicles/">See what's on each trim &rarr;</a>
+      </div>
+      <div class="principle-card" id="affordability">
+        <h3>Affordability</h3>
+        <p>
+          A payment you can carry every month for the whole term, with the tax, fees and rate written
+          down in front of you. No surprises at signing, and no being car poor to look good in the
+          driveway.
+        </p>
+        <a href="/math.html">Run the numbers first &rarr;</a>
+      </div>
+      <div class="principle-card" id="lifestyle-fit">
+        <h3>Lifestyle Fit</h3>
+        <p>
+          The right vehicle for how you actually drive: your commute, your family, what you tow, where
+          you park it. The best SUV on the lot is the wrong one if it does not fit your week.
+        </p>
+        <a href="/appointment.html">Talk it through with me &rarr;</a>
+      </div>
+      <div class="principle-card" id="long-term-value">
+        <h3>Long-Term Value</h3>
+        <p>
+          What the vehicle is worth in three years, what your trade is worth today, and how equity,
+          lease returns and New York's tax rules work in your favor when you set the deal up right.
+        </p>
+        <a href="/logistics.html">How equity and trades work &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section>
   <div class="section-inner">

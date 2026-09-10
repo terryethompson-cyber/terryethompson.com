@@ -1,0 +1,232 @@
+/* ===========================================================================
+   First Principles brand band
+   ---------------------------------------------------------------------------
+   The horizontal version of the four-pillar brand graphic, rendered in HTML so
+   it stays sharp on every screen, reads to search engines as real text, and
+   carries four working links instead of four painted-on words.
+
+   It is the one piece of markup that appears on every page. Change it here and
+   it changes everywhere.
+
+   Text and buttons are live HTML. The photograph behind them is optional: drop
+   a file at /assets/terry-banner.jpg and it appears under the scrim. With no
+   file there the band falls back to the Graphite/Charcoal Blue gradient, which
+   is why nothing breaks if the photo is missing or slow.
+   =========================================================================== */
+
+.brand-band {
+  /* Declared locally so the band is self-contained: it renders identically on
+     pages that define the brand tokens and on pages that do not. */
+  --band-graphite: #2C3E50;
+  --band-charcoal: #3B5166;
+  --band-cobalt: #0057B8;
+  --band-cobalt-lift: #7FB2EA; /* Cobalt lifted for legibility on a dark ground */
+  --band-fog: #D6DBDF;
+
+  position: relative;
+  background-color: var(--band-graphite);
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(44, 62, 80, 0.97) 0%,
+      rgba(44, 62, 80, 0.93) 42%,
+      rgba(59, 81, 102, 0.74) 100%
+    ),
+    url('/assets/terry-banner.jpg');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  border-bottom: 3px solid var(--band-cobalt);
+  container-type: inline-size;
+  color: #FFFFFF;
+}
+
+.brand-band-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px 20px;
+}
+
+.brand-band-id { flex: 0 1 auto; }
+.brand-band-pillars { flex: 1 1 auto; justify-content: center; }
+.brand-band-cta { flex: 0 0 auto; }
+
+/* ─── Identity ─── */
+
+.brand-band-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--band-cobalt-lift);
+  margin: 0 0 6px;
+}
+
+.brand-band-name {
+  font-family: 'Cambria', Georgia, 'Times New Roman', serif;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 5px;
+  color: #FFFFFF;
+}
+.brand-band-name a { color: inherit; text-decoration: none; }
+.brand-band-name a:hover { color: var(--band-fog); }
+
+.brand-band-role {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.80);
+  margin: 0;
+}
+
+/* ─── The four pillars ─── */
+
+.brand-band-pillars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.brand-band-pillars a {
+  display: inline-block;
+  padding: 8px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+.brand-band-pillars a:hover,
+.brand-band-pillars a:focus-visible {
+  background: rgba(0, 87, 184, 0.45);
+  border-color: var(--band-cobalt-lift);
+}
+
+/* ─── Call to action ─── */
+
+.brand-band-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 7px;
+  text-align: right;
+}
+
+.brand-band-cta .brand-band-action {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 4px;
+  background: #FFFFFF;
+  color: var(--band-cobalt);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.brand-band-cta .brand-band-action:hover { background: #FAFAFA; color: #004A9C; }
+
+.brand-band-site {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.62);
+  margin: 0;
+}
+
+/* Keyboard users need to see where they are on a dark ground. */
+.brand-band a:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+/* ─── Variants ─── */
+
+/* Home page: the hero directly above already says the name and the dealership,
+   so the band there carries only the pillars and the call to action. */
+.brand-band--compact .brand-band-inner { justify-content: center; gap: 16px 24px; }
+.brand-band--compact .brand-band-id { display: none; }
+
+/* Pages whose body is a fixed 800px column. Without this the band would run to
+   the column edge and read as a stray rectangle rather than a banner. */
+.brand-band--boxed { border-radius: 10px; border-bottom-width: 3px; overflow: hidden; margin: 0 0 32px; }
+.brand-band--boxed .brand-band-inner { padding: 18px; gap: 14px; }
+/* In an 800px column the band always stacks, so the role line is the first
+   thing to go: those pages introduce Terry in their own copy anyway. */
+.brand-band--boxed .brand-band-role { display: none; }
+
+/* ─── Narrow containers ─── */
+
+@container (max-width: 860px) {
+  .brand-band-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 20px;
+  }
+  .brand-band-name { font-size: 23px; }
+  .brand-band-pillars {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .brand-band-pillars::-webkit-scrollbar { display: none; }
+  .brand-band-pillars a { flex-shrink: 0; }
+  .brand-band-cta {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+    width: 100%;
+  }
+  .brand-band--compact .brand-band-inner { align-items: center; }
+  .brand-band--compact .brand-band-cta { justify-content: center; width: auto; }
+}
+
+/* ─── Narrow screens (fallback where container queries are unsupported) ─── */
+
+@media (max-width: 900px) {
+  .brand-band-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 20px;
+  }
+  .brand-band-name { font-size: 23px; }
+
+  /* Four buttons will not sit on one phone-width row, and stacking them eats
+     the screen. They scroll sideways instead, the way the mobile nav does. */
+  .brand-band-pillars {
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .brand-band-pillars::-webkit-scrollbar { display: none; }
+  .brand-band-pillars a { flex-shrink: 0; }
+
+  .brand-band-cta { align-items: flex-start; text-align: left; width: 100%; }
+  .brand-band--compact .brand-band-inner { align-items: center; }
+  .brand-band--compact .brand-band-cta { align-items: center; text-align: center; }
+}
