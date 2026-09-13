@@ -34,8 +34,12 @@ const ENTRY_POINTS = ['index.html'];
 /**
  * Files that are building blocks, not pages. Their links are still checked,
  * but nobody expects to navigate to them, so they aren't reported as orphans.
+ *
+ * brand/index.html is a real page, but deliberately unlisted: it is where Terry
+ * sends a printer or a vendor who needs the logo, not somewhere a customer
+ * should be navigating to from the nav.
  */
-const NOT_PAGES = new Set(['brand-spine-snippet.html']);
+const NOT_PAGES = new Set(['brand-spine-snippet.html', 'brand/index.html']);
 
 /** Absolute URLs that are really this site, so they get checked as local paths. */
 const SITE_ORIGINS = [
