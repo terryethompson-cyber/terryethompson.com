@@ -1,2 +1,5 @@
 # Local tooling only — never part of the published site
 node_modules/
+
+# macOS folder metadata — never useful to commit
+.DS_Store
